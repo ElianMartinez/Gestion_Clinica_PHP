@@ -1,5 +1,4 @@
 <?php
-
 require_once "Controladores/plantillaC.php";
 
 require_once "Controladores/secretariasC.php";
@@ -29,7 +28,5 @@ require_once "Modelos/historialM.php";
 require_once "Controladores/historialSecretariaC.php";
 require_once "Modelos/historialSecretariaM.php";
 
-
-
 $plantilla = new Plantilla();
-$plantilla -> LlamarPlantilla();
+$plantilla->LlamarPlantilla();

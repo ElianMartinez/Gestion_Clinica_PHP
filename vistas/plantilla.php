@@ -1,7 +1,6 @@
 <?php
 include "core/config.php";
 session_start();
-
 ?>
 
 <!DOCTYPE html>
@@ -12,16 +11,11 @@ session_start();
   <title>Clínica Médica</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-
   <?php
-
 $favicon = new InicioC();
 $favicon->FaviconC();
 
 ?>
-
-
-
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -55,8 +49,6 @@ $favicon->FaviconC();
 
 <body class="hold-transition skin-blue sidebar-mini login-page">
 <!-- Site wrapper -->
-
-
   <?php
 
 if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {

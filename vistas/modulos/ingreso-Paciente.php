@@ -24,7 +24,7 @@
       </div>
 
       <div class="row">
-       
+
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
@@ -34,10 +34,10 @@
 
       <?php
 
-      $ingreso = new PacientesC();
-      $ingreso -> IngresarPacienteC();
+$ingreso = new PacientesC();
+$ingreso->IngresarPacienteC();
 
-      ?>
+?>
     </form>
 
   </div>
