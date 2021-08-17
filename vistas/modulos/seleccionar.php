@@ -41,7 +41,6 @@
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>Paciente</h3>
-
               <p>Inicie Sesión</p>
             </div>
             <div class="icon">

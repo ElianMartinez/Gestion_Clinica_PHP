@@ -24,12 +24,16 @@
       </div>
 
       <div class="row">
-
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
         </div>
         <!-- /.col -->
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <a href="registrarSolo" class="btn btn-warning btn-block btn-flat">Crear Registro</a>
+        </div>
       </div>
 
       <?php

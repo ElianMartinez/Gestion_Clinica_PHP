@@ -117,6 +117,10 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 
         include "modulos/ingreso-Administrador.php";
 
+    } else if ($_GET["url"] == "registrarSolo") {
+
+        include "modulos/registrarSolo.php";
+
     }
 
 } else {
