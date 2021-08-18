@@ -1,45 +1,48 @@
 <?php
 
-if($_SESSION["rol"] != "Paciente"){
+if ($_SESSION["rol"] != "Paciente") {
 
-	echo '<script>
+    echo '<script>
 
 	window.location = "inicio";
 	</script>';
 
-	return;
+    return;
 
 }
 
 ?>
 
 <div class="content-wrapper">
-	
+
 	<section class="content-header">
-		
+
 		<h1>Gestor de Perfil</h1>
 
 	</section>
 
 
 	<section class="content">
-		
+
 		<div class="box">
-			
+
 			<div class="box-body">
-				
+
 				<table class="table table-bordered table-hover table-striped">
-					
+
 					<thead>
-						
+
 						<tr>
-							
+
 							<th>Usuario</th>
 							<th>Contraseña</th>
 							<th>Nombre</th>
 							<th>Apellido</th>
 							<th>Foto</th>
+							<th>Correo</th>
 							<th>Documento</th>
+							<th>Teléfono</th>
+							<th>Dirección</th>
 							<th>Editar</th>
 
 						</tr>
@@ -50,13 +53,13 @@ if($_SESSION["rol"] != "Paciente"){
 
 						<?php
 
-						$perfil = new PacientesC();
-						$perfil -> VerPerfilPacienteC();
+$perfil = new PacientesC();
+$perfil->VerPerfilPacienteC();
 
-						?>
+?>
 
-						
-						
+
+
 					</tbody>
 
 				</table>

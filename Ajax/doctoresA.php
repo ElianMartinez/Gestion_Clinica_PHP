@@ -1,5 +1,4 @@
 <?php
-
 require_once "../Controladores/doctoresC.php";
 require_once "../Modelos/doctoresM.php";
 

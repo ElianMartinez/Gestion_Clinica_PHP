@@ -7,7 +7,7 @@ class PacientesC
     {
         if (isset($_POST["rolP"])) {
             $tablaBD = "pacientes";
-            $datosC = array("apellido" => $_POST["apellido"], "nombre" => $_POST["nombre"], "documento" => $_POST["documento"], "usuario" => $_POST["usuario"], "clave" => $_POST["clave"], "rol" => $_POST["rolP"], "correo" => $_POST["correo"]);
+            $datosC = array("apellido" => $_POST["apellido"], "nombre" => $_POST["nombre"], "documento" => $_POST["documento"], "usuario" => $_POST["usuario"], "clave" => $_POST["clave"], "rol" => $_POST["rolP"], "correo" => $_POST["correo"], "direccion" => $_POST["direccion"], "telefono" => $_POST["telefono"]);
             $resultado = PacientesM::CrearPacienteM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>window.location = "pacientes";</script>';
@@ -44,9 +44,7 @@ class PacientesC
             }
 
             $resultado = PacientesM::BorrarPacienteM($tablaBD, $id);
-
             if ($resultado == true) {
-
                 echo '<script>
 				window.location = "pacientes";
 				</script>';
@@ -56,12 +54,9 @@ class PacientesC
     //Actualizar Paciente
     public function ActualizarPacienteC()
     {
-
         if (isset($_POST["Pid"])) {
-
             $tablaBD = "pacientes";
-
-            $datosC = array("id" => $_POST["Pid"], "apellido" => $_POST["apellidoE"], "nombre" => $_POST["nombreE"], "documento" => $_POST["documentoE"], "usuario" => $_POST["usuarioE"], "clave" => $_POST["claveE"], "correo" => $_POST["correoE"]);
+            $datosC = array("id" => $_POST["Pid"], "apellido" => $_POST["apellidoE"], "nombre" => $_POST["nombreE"], "documento" => $_POST["documentoE"], "usuario" => $_POST["usuarioE"], "clave" => $_POST["claveE"], "correo" => $_POST["correoE"], "telefono" => $_POST["telefonoE"], "direccion" => $_POST["direccionE"]);
             $resultado = PacientesM::ActualizarPacienteM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>
@@ -74,40 +69,14 @@ class PacientesC
 
     }
     //Ingreso de los Pacientes
-    public function RegistrarPacienteC()
+    public function RegistrarPacienteC($datosC)
     {
-        if (isset($_POST["usuario-Ing"]) && isset($_POST["nombres"]) && isset($_POST["correo"])) {
-
-            if (preg_match('/^[a-zA-Z0-9]+$/', $_POST["usuario-Ing"]) && preg_match('/^[a-zA-Z0-9]+$/', $_POST["clave-Ing"])) {
-
-                // echo $_POST["nombres"];
-                // echo $_POST["apellidos"];
-                // echo $_POST["correo"];
-                // echo $_POST["noDoc"];
-                // echo $_POST["usuario-Ing"];
-                // echo $_POST["clave-Ing"];
-
-                mail("elianmaertinez157@hotmail.com", "Hola klk", "Mensaje desde php", "Encabezado");
-
-                //    $tablaBD = "pacientes";
-                //    $datosC = array("usuario" => $_POST["usuario-Ing"], "clave" => $_POST["clave-Ing"]);
-                //    $resultado = PacientesM::IngresarPacienteM($tablaBD, $datosC);
-
-                //   if ($resultado["usuario"] == $_POST["usuario-Ing"] && $resultado["clave"] == $_POST["clave-Ing"]) {
-                //       echo '<script>
-                //       window.location = "inicio";
-                //       </script>';
-
-                //   } else {
-
-                //       echo '<br><div class="alert alert-danger">Error al Ingresar</div>';
-
-                //   }
-
-            }
-
+        $resultado = PacientesM::CrearPacienteTempM($datosC);
+        if ($resultado > 0) {
+            return $resultado;
+        } else if ($resultado == false) {
+            return $resultado;
         }
-
     }
 
     //Ingreso de los Pacientes
@@ -172,13 +141,18 @@ class PacientesC
             echo '<td><img src="' . $resultado["foto"] . '" width="40px"></td>';
         }
 
-        echo '<td>' . $resultado["documento"] . '</td>
+        echo '<td>' . $resultado["correo"] . '</td>
+        <td>' . $resultado["documento"] . '</td>
+        <td>' . $resultado["telefono"] . '</td>
+        <td>' . $resultado["direccion"] . '</td>
 				<td>
-					<a href="'.$_SERVER.'clinica/perfil-P/' . $resultado["id"] . '">
+					<a href="' . $_SERVER . 'clinica/perfil-P/' . $resultado["id"] . '">
 						<button class="btn btn-success"><i class="fa fa-pencil"></i></button>
 					</a>
 				</td>
-			</tr>';
+			</tr>
+
+            ';
     }
 
     //Editar Perfil Paceinte
@@ -194,31 +168,31 @@ class PacientesC
         echo '<form method="post" enctype="multipart/form-data">
 
 					<div class="row">
-
-						<div class="col-md-6 col-xs-12">
-
+						<div class="col-md-4 col-xs-12">
 							<h2>Nombre:</h2>
 							<input type="text" class="input-lg" name="nombrePerfil" value="' . $resultado["nombre"] . '">
 							<input type="hidden" class="input-lg" name="Pid" value="' . $resultado["id"] . '">
-
 							<h2>Apellido:</h2>
 							<input type="text" class="input-lg" name="apellidoPerfil" value="' . $resultado["apellido"] . '">
-
 							<h2>Usuario:</h2>
 							<input type="text" class="input-lg" name="usuarioPerfil" value="' . $resultado["usuario"] . '">
-
 							<h2>Correo:</h2>
 							<input type="text" class="input-lg" name="correoPerfil" value="' . $resultado["correo"] . '">
-
-							<h2>Clave:</h2>
+							</div>
+                            <div class="col-md-4 col-xs-12">
+                            <h2>Clave:</h2>
 							<input type="text" class="input-lg" name="clavePerfil" value="' . $resultado["clave"] . '">
-
 							<h2>Documento:</h2>
 							<input type="text" class="input-lg" name="documentoPerfil" value="' . $resultado["documento"] . '">
+                            <h2>Teléfono:</h2>
+							<input type="text" class="input-lg" name="telefonoPerfil" value="' . $resultado["telefono"] . '">
+                            <h2>Dirección:</h2>
+							<input type="text" class="input-lg" name="direccionPerfil" value="' . $resultado["direccion"] . '">
+							</div>
 
-						</div>
 
-						<div class="col-md-6 col-xs-12">
+
+						<div class="col-md-4 col-xs-12">
 
 							<br><br>
 
@@ -227,11 +201,11 @@ class PacientesC
 
         if ($resultado["foto"] != "") {
 
-            echo '<img src="'.$_SERVER.'clinica/' . $resultado["foto"] . '" width="200px" class="img-responsive">';
+            echo '<img src="' . $_SERVER . 'clinica/' . $resultado["foto"] . '" width="200px" class="img-responsive">';
 
         } else {
 
-            echo '<img src="'.$_SERVER.'clinica/Vistas/img/defecto.png" width="200px" class="img-responsive">';
+            echo '<img src="' . $_SERVER . 'clinica/Vistas/img/defecto.png" width="200px" class="img-responsive">';
 
         }
 
@@ -280,11 +254,11 @@ class PacientesC
             }
 
             $tablaBD = "pacientes";
-            $datosC = array("id" => $_POST["Pid"], "nombre" => $_POST["nombrePerfil"], "apellido" => $_POST["apellidoPerfil"], "usuario" => $_POST["usuarioPerfil"], "clave" => $_POST["clavePerfil"], "documento" => $_POST["documentoPerfil"], "correo" => $_POST["correoPerfil"], "foto" => $rutaImg);
+            $datosC = array("id" => $_POST["Pid"], "nombre" => $_POST["nombrePerfil"], "apellido" => $_POST["apellidoPerfil"], "usuario" => $_POST["usuarioPerfil"], "clave" => $_POST["clavePerfil"], "documento" => $_POST["documentoPerfil"], "correo" => $_POST["correoPerfil"], "telefono" => $_POST["telefonoPerfil"], "direccion" => $_POST["direccionPerfil"], "foto" => $rutaImg);
             $resultado = PacientesM::ActualizarPerfilPacienteM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>
-				window.location = ' . $_SERVER . 'clinica/perfil-P/' . $_SESSION["id"] . '";
+				window.location = "' . $_SERVER . 'clinica/perfil-P/' . $_SESSION["id"] . '";
 				</script>';
             }
         }

@@ -1,5 +1,5 @@
 <?php
-include "core/config.php";
+include_once "core/config.php";
 session_start();
 ?>
 
@@ -16,6 +16,7 @@ $favicon = new InicioC();
 $favicon->FaviconC();
 
 ?>
+
   <!-- Bootstrap 3.3.7 -->
   <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -121,6 +122,10 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 
         include "modulos/registrarSolo.php";
 
+    } else if ($_GET["url"] == "codeVeri") {
+
+        include "modulos/codeVeri.php";
+
     }
 
 } else {
@@ -130,19 +135,12 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 }
 
 ?>
-
   <!-- =============================================== -->
-
   <!-- Left side column. contains the sidebar -->
-
-
   <!-- =============================================== -->
-
   <!-- Content Wrapper. Contains page content -->
-
-
 <!-- ./wrapper -->
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery 3 -->
 <script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
@@ -170,7 +168,7 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 <script src="<?php echo $_SERVER ?>clinica/Vistas/js/doctores.js"></script>
 <script src="<?php echo $_SERVER ?>clinica/Vistas/js/pacientes.js"></script>
 <script src="<?php echo $_SERVER ?>clinica/Vistas/js/secretarias.js"></script>
-
+<script src="<?php echo $_SERVER ?>clinica/Vistas/js/registroPacienteA.js"></script>
 
 
 <script>
@@ -240,7 +238,7 @@ foreach ($resultado as $key => $value) {
 
 ],
 
-   <?php
+<?php
 
 if ($_SESSION["rol"] == "Paciente") {
 
@@ -281,7 +279,6 @@ if ($_SESSION["rol"] == "Paciente") {
 dayClick:function(date,jsEvent,view){
 
     $('#CitaModal').modal();
-
     var fecha = date.format();
       var hora2 = ("01:00:00").split(":");
 
@@ -311,6 +308,7 @@ dayClick:function(date,jsEvent,view){
       $('#fechaz').val(fecha[0]);
 
 }
+});
 
 </script>
 

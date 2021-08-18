@@ -27,7 +27,8 @@ if ($_SESSION["rol"] != "Secretaria" && $_SESSION["rol"] != "Doctor" && $_SESSIO
 
 			<div class="box-header">
 
-				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CrearPaciente">Crear Paciente</button>
+				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CrearPaciente">Crear
+					Paciente</button>
 
 			</div>
 
@@ -43,6 +44,8 @@ if ($_SESSION["rol"] != "Secretaria" && $_SESSION["rol"] != "Doctor" && $_SESSIO
 							<th>Apellido</th>
 							<th>Nombre</th>
 							<th>Documento</th>
+							<th>Teléfono</th>
+							<th>Dirección</th>
 							<th>Correo</th>
 							<th>Foto</th>
 							<th>Usuario</th>
@@ -70,6 +73,8 @@ foreach ($resultado as $key => $value) {
 									<td>' . $value["apellido"] . '</td>
 									<td>' . $value["nombre"] . '</td>
 									<td>' . $value["documento"] . '</td>
+									<td>' . $value["telefono"] . '</td>
+									<td>' . $value["direccion"] . '</td>
 									<td>' . $value["correo"] . '</td>';
 
     if ($value["foto"] == "") {
@@ -150,22 +155,34 @@ foreach ($resultado as $key => $value) {
 							<input type="text" class="form-control input-lg" name="nombre" required>
 
 						</div>
+						<div class="form-group">
+							<h2>Tipo de Documento:</h2>
+							<select
+							  class="form-control"
+							  required
+							  name="tipoDocumento"
+							  placeholder="Tipo de Documento"
+							>
+							  <option value="1">Cédula</option>
+							  <option value="2">Pasaporte</option>
+							</select>
+						  </div>
 
-							<div class="form-group">
+						<div class="form-group">
 
-								<h2>Documento:</h2>
+							<h2>Documento:</h2>
 
-								<input type="text" class="form-control input-lg" name="documento" required>
+							<input type="text" class="form-control input-lg" name="documento" required>
 
-							</div>
+						</div>
 
-							<div class="form-group">
+						<div class="form-group">
 
-								<h2>Correo:</h2>
+							<h2>Correo:</h2>
 
-								<input type="email" class="form-control input-lg" name="correo" required>
+							<input type="email" class="form-control input-lg" name="correo" required>
 
-							</div>
+						</div>
 
 						<div class="form-group">
 
@@ -181,6 +198,14 @@ foreach ($resultado as $key => $value) {
 
 							<input type="text" class="form-control input-lg" name="clave" required>
 
+						</div>
+						<div class="form-group">
+							<h2>Teléfono:</h2>
+							<input type="text" class="form-control input-lg" name="telefono" id="telefono" required>
+						</div>
+						<div class="form-group">
+							<h2>Dirección:</h2>
+							<input type="text" class="form-control input-lg" name="direccion" id="direccion" >
 						</div>
 
 					</div>
@@ -233,34 +258,40 @@ $crear->CrearPacienteC();
 						</div>
 
 						<div class="form-group">
-
 							<h2>Nombre:</h2>
-
 							<input type="text" class="form-control input-lg" id="nombreE" name="nombreE" required>
-
 						</div>
-
+						<div class="form-group ">
+							<h2>Tipo de Documento:</h2>
+							<select
+							  class="form-control"
+							  required
+							  name="tipoDocumento"
+							  placeholder="Tipo de Documento"
+							>
+							  <option value="1">Cédula</option>
+							  <option value="2">Pasaporte</option>
+							</select>
+						  </div>
 						<div class="form-group">
-
 							<h2>Documento:</h2>
-
 							<input type="text" class="form-control input-lg" id="documentoE" name="documentoE" required>
-
 						</div>
 						<div class="form-group">
-
-								<h2>Correo:</h2>
-
-								<input type="email" class="form-control input-lg" name="correoE" required>
-
-							</div>
-
+							<h2>Correo:</h2>
+							<input type="email" class="form-control input-lg" id="correoE" name="correoE" required>
+						</div>
 						<div class="form-group">
-
+							<h2>Teléfono:</h2>
+							<input type="text" class="form-control input-lg" name="telefonoE" id="telefonoE" required>
+						</div>
+						<div class="form-group">
+							<h2>Dirección:</h2>
+							<input type="text" class="form-control input-lg" name="direccionE" id="direccionE" >
+						</div>
+						<div class="form-group">
 							<h2>Usuario:</h2>
-
 							<input type="text" class="form-control input-lg" id="usuarioE" name="usuarioE" required>
-
 						</div>
 
 						<div class="form-group">
@@ -300,6 +331,7 @@ $actualizar->ActualizarPacienteC();
 </div>
 
 <?php
+
 
 $borrarP = new PacientesC();
 $borrarP->BorrarPacienteC();
