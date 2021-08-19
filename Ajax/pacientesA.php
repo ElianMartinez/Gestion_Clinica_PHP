@@ -27,7 +27,7 @@ class PacientesA
 
         $resultado = PacientesC::VerPacientesC($columna, $valor);
 
-        echo json_encode($resultado);
+        echo $resultado;
 
     }
 
@@ -53,4 +53,10 @@ if (isset($_POST["usuario-Ing"]) && isset($_POST["clave-Ing"]) && isset($_POST["
     $datosC = array("apellido" => $_POST["apellidos"], "nombre" => $_POST["nombres"], "documento" => $_POST["noDoc"], "usuario" => $_POST["usuario-Ing"], "clave" => $_POST["clave-Ing"], "correo" => $_POST["correo"], "telefono" => $_POST["telefono"], "direccion" => $_POST["direccion"]);
 
     echo $ingreso->RegistrarPacienteC($datosC);
+}
+
+if (isset($_POST["idUserTemp"]) && isset($_POST["num"])) {
+    $ingreso = new PacientesC();
+    $arr = $ingreso->VerCode($_POST["idUserTemp"], $_POST["num"]);
+    echo json_encode($arr);
 }

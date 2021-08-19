@@ -27,6 +27,11 @@ class PacientesC
         return $resultado;
     }
 
+    public function VerCode($id, $num)
+    {
+        return PacientesM::VerCodeM($id, $num);
+    }
+
     //Borrar Paciente
     public function BorrarPacienteC()
     {

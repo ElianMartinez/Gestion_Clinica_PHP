@@ -4,7 +4,39 @@ require_once "ConexionBD.php";
 
 class PacientesM extends ConexionBD
 {
+    public static function VerCodeM($id, $num)
+    {
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM paciente_temp where id = :id and Estado =0");
+        $pdo->bindParam(":id", $id, PDO::PARAM_STR);
+        $pdo->execute();
+        $res = $pdo->fetchAll();
+        if (isset($res[0])) {
+            $pdo = ConexionBD::cBD()->prepare("SELECT * FROM paciente_temp where id = :id and verificode = :num and Estado =0");
+            $pdo->bindParam(":id", $id, PDO::PARAM_STR);
+            $pdo->bindParam(":num", $num, PDO::PARAM_STR);
+            $pdo->execute();
+            $resultado = $pdo->fetchAll();
+            if (isset($resultado[0])) {
+                $n = true;
+                $pdo1 = ConexionBD::cBD()->prepare("UPDATE paciente_temp set Estado= :est where id=:id");
+                $pdo1->bindParam(":id", $id, PDO::PARAM_STR);
+                $pdo1->bindParam(":est", $n, PDO::PARAM_STR);
+                if ($pdo1->execute()) {
+                    $mess = 'Usuario ' . strtoupper($resultado[0]["nombre"]) . ' ' . strtoupper($resultado[0]["apellido"]) . ' ID:' . $id . ' en lista de espera para aprobación';
+                    $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`) SELECT  `id`, :messag, 0 FROM  `secretarias` ");
+                    $pdo2->bindParam(":messag", $mess, PDO::PARAM_STR);
+                    if ($pdo2->execute()) {
+                        return true;
+                    }
+                }
+            } else {
+                return 2;
+            }
+        } else {
+            return 3;
 
+        }
+    }
     //Crear Pacientes_temp
     public static function CrearPacienteM($tablaBD, $datosC)
     {

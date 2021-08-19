@@ -168,10 +168,7 @@
 
         <div id="error"></div>
       </form>
-      <div id="loader" class="contenedor disabled">
-        <div class="loader"></div>
-      </div>
-    </div>
+    
     <!-- /.login-box-body -->
   </div>
 </body>
