@@ -31,6 +31,7 @@ $(document).ready(() => {
       beforeSend: (res) => {
         $("#registroUsuarioAuto").addClass("disabled");
         $("#loader").removeClass("disabled");
+        
       },
       success: function (resultado) {
         console.log(resultado);

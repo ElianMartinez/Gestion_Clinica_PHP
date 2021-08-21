@@ -60,3 +60,25 @@ if (isset($_POST["idUserTemp"]) && isset($_POST["num"])) {
     $arr = $ingreso->VerCode($_POST["idUserTemp"], $_POST["num"]);
     echo json_encode($arr);
 }
+
+if (isset($_POST["id_user"]) && isset($_POST["tabla"])) {
+    $arr = array("id_user" => $_POST["id_user"], "tabla" => $_POST["tabla"]);
+    $retorno = PacientesM::VerNotification($arr);
+    echo json_encode($retorno);
+}
+
+if (isset($_POST["id_noti"])) {
+    $retorno = PacientesM::UpdateNoti($_POST["id_noti"]);
+    echo json_encode($retorno);
+
+}
+
+if (isset($_POST["verUsuariosWait"])) {
+    $retorno = PacientesM::VerUsuariosInWait();
+    echo json_encode($retorno);
+}
+
+if (isset($_POST["id_userWait"])) {
+    $retorno = PacientesM::UpdateUserWait($_POST["id_userWait"]);
+    echo json_encode($retorno);
+}

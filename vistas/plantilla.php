@@ -34,22 +34,24 @@ $favicon->FaviconC();
   <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <!-- FullCalendar -->
-  <link rel="stylesheet" href="//localhost/clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.min.css">
-  <link rel="stylesheet" href="//localhost/clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="//localhost/clinica/Vistas/dist/css/alt/font_online.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/dist/css/alt/font_online.css">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini login-page">
-<!-- Site wrapper -->
+    <!-- Site wrapper -->
+    <script src="https://momentjs.com/downloads/moment.js"></script>
+    <script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/jquery/dist/jquery.min.js"></script>
   <?php
 
 if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
@@ -126,6 +128,8 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 
         include "modulos/codeVeri.php";
 
+    } elseif ($_GET["url"] == "listaEspera") {
+        include "modulos/listaEspera.php";
     }
 
 } else {
@@ -142,7 +146,6 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 <!-- ./wrapper -->
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery 3 -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->

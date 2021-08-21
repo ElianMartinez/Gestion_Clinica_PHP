@@ -23,7 +23,7 @@ class PacientesM extends ConexionBD
                 $pdo1->bindParam(":est", $n, PDO::PARAM_STR);
                 if ($pdo1->execute()) {
                     $mess = 'Usuario ' . strtoupper($resultado[0]["nombre"]) . ' ' . strtoupper($resultado[0]["apellido"]) . ' ID:' . $id . ' en lista de espera para aprobación';
-                    $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`) SELECT  `id`, :messag, 0 FROM  `secretarias` ");
+                    $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`, `tabla`) SELECT  `id`, :messag, 0, 'Secretaria' FROM  `secretarias` ");
                     $pdo2->bindParam(":messag", $mess, PDO::PARAM_STR);
                     if ($pdo2->execute()) {
                         return true;
@@ -35,6 +35,47 @@ class PacientesM extends ConexionBD
         } else {
             return 3;
 
+        }
+    }
+
+    public static function UpdateUserWait($datosC)
+    {
+        $pdo = ConexionBD::cBD()->prepare("call add_user_paciente(:idpa)");
+        $pdo->bindParam(":idpa", $datosC, PDO::PARAM_INT);
+        if ($pdo->execute()) {
+            return true;
+        } else {
+            return false;
+
+        }
+    }
+
+    public static function VerUsuariosInWait()
+    {
+        $pdo = ConexionBD::cBD()->prepare("select * from paciente_temp where Estado = true");
+        $pdo->execute();
+        $resultado = $pdo->fetchAll();
+        return $resultado;
+    }
+
+    public static function VerNotification($datosC)
+    {
+        $pdo = ConexionBD::cBD()->prepare("select * from notificaciones where id_usuario = :iduser and tabla = :rol and leido = false");
+        $pdo->bindParam(":iduser", $datosC["id_user"], PDO::PARAM_INT);
+        $pdo->bindParam(":rol", $datosC["tabla"], PDO::PARAM_STR);
+        $pdo->execute();
+        $resultado = $pdo->fetchAll();
+        return $resultado;
+    }
+
+    public static function UpdateNoti($datosC)
+    {
+        $pdo = ConexionBD::cBD()->prepare("update notificaciones set leido = true where id = :id_n");
+        $pdo->bindParam(":id_n", $datosC, PDO::PARAM_INT);
+        if ($pdo->execute()) {
+            return true;
+        } else {
+            return false;
         }
     }
     //Crear Pacientes_temp
