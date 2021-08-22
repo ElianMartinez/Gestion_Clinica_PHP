@@ -1,5 +1,9 @@
 <?php
-require_once "core/config.php";
+include "core/config.php";
+session_start();
+$_SESSION['HTTP_DIR'] = $_SERVER;
+header("Access-Control-Allow-Origin: *");
+
 require_once "Controladores/plantillaC.php";
 
 require_once "Controladores/secretariasC.php";

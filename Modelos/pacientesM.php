@@ -41,11 +41,25 @@ class PacientesM extends ConexionBD
     public static function UpdateUserWait($datosC)
     {
         $pdo = ConexionBD::cBD()->prepare("call add_user_paciente(:idpa)");
-        $pdo->bindParam(":idpa", $datosC, PDO::PARAM_INT);
+        $pdo->bindParam(":idpa", $datosC["id"], PDO::PARAM_INT);
         if ($pdo->execute()) {
-            return true;
+            PacientesM::email_send2($datosC['user'], $datosC['pass'], $datosC['namelast'], $datosC["correo"]);
+            return "true";
         } else {
-            return false;
+            return $datosC["id"];
+        }
+    }
+
+    public static function CancellUser($datosC)
+    {
+
+        $pdo = ConexionBD::cBD()->prepare("DELETE FROM paciente_temp where id=:idpa");
+        $pdo->bindParam(":idpa", $datosC["id"], PDO::PARAM_INT);
+        if ($pdo->execute()) {
+            PacientesM::email_sen32($datosC['user'], $datosC['pass'], $datosC['namelast'], $datosC["correo"]);
+            return "true";
+        } else {
+            return "false";
 
         }
     }
@@ -157,16 +171,98 @@ class PacientesM extends ConexionBD
 
     }
 
+    private static function email_sen32($user, $pass, $nombreApellido, $correo)
+    {
+        $message = "<html><body>";
+        $message .= "<table width='100%' bgcolor='#e0e0e0' cellpadding='0' cellspacing='0' border='0'>";
+        $message .= "<tr><td>";
+        $message .= "<table align='center' width='100%' border='0' cellpadding='0' cellspacing='0' style='max-width:650px; background-color:#fff; font-family:Verdana, Geneva, sans-serif;'>";
+        $message .= "<thead>
+<tr height='80'>
+<th ><div style='background-color: white;'> <img width='300px' src='https://cecip.com.do/site/templates/cecip/images/cecip-logo.png' /></div></th>
+</tr>
+     </thead>";
+
+        $message .= "<tbody>
+     <tr align='center' height='50' style='font-family:Verdana, Geneva, sans-serif;'>
+
+</tr>
+
+<tr>
+<td colspan='4' style='padding:15px;'>
+<p style='font-size:20px;'>Hola <b>" . $nombreApellido . "</b>. Su registro ha sido <b>RECHAZADO</b></p>
+<hr />
+
+<hr>
+<a width='100%'; style='background-color: green; color: white;' href=http://localhost/clinica/ingreso-Paciente>Ir a la página</a>
+
+
+</td>
+</tr>
+
+      </tbody>";
+
+        $message .= "</table>";
+
+        $message .= "</td></tr>";
+        $message .= "</table>";
+
+        $message .= "</body></html>";
+        $cabeceras = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        mail($correo, "Confirmación de Registro", $message, $cabeceras);
+    }
+
+    private static function email_send2($user, $pass, $nombreApellido, $correo)
+    {
+        $message = "<html><body>";
+        $message .= "<table width='100%' bgcolor='#e0e0e0' cellpadding='0' cellspacing='0' border='0'>";
+        $message .= "<tr><td>";
+        $message .= "<table align='center' width='100%' border='0' cellpadding='0' cellspacing='0' style='max-width:650px; background-color:#fff; font-family:Verdana, Geneva, sans-serif;'>";
+        $message .= "<thead>
+<tr height='80'>
+<th ><div style='background-color: white;'> <img width='300px' src='https://cecip.com.do/site/templates/cecip/images/cecip-logo.png' /></div></th>
+</tr>
+     </thead>";
+
+        $message .= "<tbody>
+     <tr align='center' height='50' style='font-family:Verdana, Geneva, sans-serif;'>
+
+</tr>
+
+<tr>
+<td colspan='4' style='padding:15px;'>
+<p style='font-size:20px;'>Hola <b>" . $nombreApellido . "</b>. Su registro ha sido <b>APROBADO</b></p>
+<hr />
+<img  width='200px' src='https://thumbs.dreamstime.com/b/approved-blue-grunge-round-stamp-vintage-rubber-84113428.jpg'>
+<h3><b>Usuario</b> : " . $user . "</h3>
+<h3><b>Clave</b> : " . $pass . "</h3>
+<hr>
+<a width='100%'; style='background-color: green; color: white;' href=http://localhost/clinica/ingreso-Paciente>Ir a la página</a>
+
+
+</td>
+</tr>
+
+      </tbody>";
+
+        $message .= "</table>";
+
+        $message .= "</td></tr>";
+        $message .= "</table>";
+
+        $message .= "</body></html>";
+        $cabeceras = 'MIME-Version: 1.0' . "\r\n";
+        $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+        mail($correo, "Confirmación de Registro", $message, $cabeceras);
+    }
+
     private static function email_send($code, $name, $apellido, $correo, $id)
     {
         $message = "<html><body>";
-
         $message .= "<table width='100%' bgcolor='#e0e0e0' cellpadding='0' cellspacing='0' border='0'>";
-
         $message .= "<tr><td>";
-
         $message .= "<table align='center' width='100%' border='0' cellpadding='0' cellspacing='0' style='max-width:650px; background-color:#fff; font-family:Verdana, Geneva, sans-serif;'>";
-
         $message .= "<thead>
 <tr height='80'>
 <th ><div style='background-color: white;'> <img width='300px' src='https://cecip.com.do/site/templates/cecip/images/cecip-logo.png' /></div></th>

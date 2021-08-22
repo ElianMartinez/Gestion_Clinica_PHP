@@ -40,9 +40,9 @@
 
 $ingreso = new PacientesC();
 $ingreso->IngresarPacienteC();
-
 ?>
     </form>
+
 
   </div>
   <!-- /.login-box-body -->

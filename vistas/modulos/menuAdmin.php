@@ -5,35 +5,35 @@
       <ul class="sidebar-menu">
         
         <li>
-          <a href="http://localhost/clinica/inicio">
+          <a href="<?php echo $_SERVER; ?>clinica/inicio">
             <i class="fa fa-home"></i>
             <span>Inicio</span>
           </a>
         </li>
 
         <li>
-          <a href="http://localhost/clinica/secretarias">
+          <a href="<?php echo $_SERVER; ?>clinica/secretarias">
             <i class="fa fa-female"></i>
             <span>Secretarias</span>
           </a>
         </li>
 
         <li>
-          <a href="http://localhost/clinica/doctores">
+          <a href="<?php echo $_SERVER; ?>clinica/doctores">
             <i class="fa fa-user-md"></i>
             <span>Doctores</span>
           </a>
         </li>
 
         <li>
-          <a href="http://localhost/clinica/consultorios">
+          <a href="<?php echo $_SERVER; ?>clinica/consultorios">
             <i class="fa fa-medkit"></i>
             <span>Consultorios</span>
           </a>
         </li>
 
         <li>
-          <a href="http://localhost/clinica/pacientes">
+          <a href="<?php echo $_SERVER; ?>clinica/pacientes">
             <i class="fa fa-users"></i>
             <span>Pacientes</span>
           </a>

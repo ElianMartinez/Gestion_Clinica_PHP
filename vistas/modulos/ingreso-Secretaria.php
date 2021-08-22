@@ -24,7 +24,6 @@
       </div>
 
       <div class="row">
-       
         <!-- /.col -->
         <div class="col-xs-12">
           <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
@@ -34,10 +33,9 @@
 
       <?php
 
-      $ingreso = new SecretariasC();
-      $ingreso -> IngresarSecretariaC();
-
-      ?>
+$ingreso = new SecretariasC();
+$ingreso->IngresarSecretariaC();
+?>
     </form>
 
   </div>

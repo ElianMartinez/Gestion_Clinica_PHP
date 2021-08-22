@@ -1,27 +1,29 @@
 <?php
 
-class HistorialSecretariaC{
+class HistorialSecretariaC
+{
 
-public function BorrarHistorialSecretariaC(){
+    public function BorrarHistorialSecretariaC()
+    {
 
-	if(substr($_GET["url"], 20)){
+        if (substr($_GET["url"], 20)) {
 
-			$tablaBD = "citas";
+            $tablaBD = "citas";
 
-			$id = substr($_GET["url"], 20);
+            $id = substr($_GET["url"], 20);
 
-			$resultado = HistorialSecretariaM::BorrarHistoriaSecretariaM($tablaBD, $id);
+            $resultado = HistorialSecretariaM::BorrarHistoriaSecretariaM($tablaBD, $id);
 
-			if($resultado == true){
+            if ($resultado == true) {
 
-				echo '<script>
+                echo '<script>
 
-				window.location = "http://localhost/clinica/historialSecretaria";
+				window.location = "' . $_SERVER . 'clinica/historialSecretaria";
 				</script>';
 
-			}
+            }
 
-		}
+        }
 
-	}
+    }
 }

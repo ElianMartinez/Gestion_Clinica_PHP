@@ -14,6 +14,9 @@ if ($_SESSION["rol"] != "Secretaria" && $_SESSION["rol"] != "Doctor" && $_SESSIO
 ?>
 
 <div class="content-wrapper">
+	<hr>
+<?php include "listaEspera.php"?>
+
 
 	<section class="content-header">
 
@@ -26,19 +29,12 @@ if ($_SESSION["rol"] != "Secretaria" && $_SESSION["rol"] != "Doctor" && $_SESSIO
 		<div class="box">
 
 			<div class="box-header">
-
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CrearPaciente">Crear
 					Paciente</button>
-
 			</div>
-
-
 			<div class="box-body">
-
 				<table class="table table-bordered table-hover table-striped DT">
-
 					<thead>
-
 						<tr>
 							<th>N°</th>
 							<th>Apellido</th>
@@ -53,13 +49,9 @@ if ($_SESSION["rol"] != "Secretaria" && $_SESSION["rol"] != "Doctor" && $_SESSIO
 							<th>Editar / Borrar</th>
 
 						</tr>
-
 					</thead>
-
 					<tbody>
-
 						<?php
-
 $columna = null;
 $valor = null;
 
@@ -78,15 +70,10 @@ foreach ($resultado as $key => $value) {
 									<td>' . $value["correo"] . '</td>';
 
     if ($value["foto"] == "") {
-
         echo '<td><img src="Vistas/img/defecto.png" width="40px"></td>';
-
     } else {
-
         echo '<td><img src="' . $value["foto"] . '" width="40px"></td>';
-
     }
-
     echo '<td>' . $value["usuario"] . '</td>
 
 									<td>' . $value["clave"] . '</td>
@@ -123,6 +110,7 @@ foreach ($resultado as $key => $value) {
 	</section>
 
 </div>
+
 
 
 
@@ -326,12 +314,14 @@ $actualizar->ActualizarPacienteC();
 
 		</div>
 
-	</div>
 
-</div>
 
 <?php
 
-
 $borrarP = new PacientesC();
 $borrarP->BorrarPacienteC();
+?>
+
+
+</div>
+

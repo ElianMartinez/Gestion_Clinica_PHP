@@ -52,7 +52,7 @@ class ConsultoriosC
 
                 echo '<script>
 
-				window.location = "' . $_SERVER . '/clinica/consultorios";
+				window.location = "' . $_SERVER . 'clinica/consultorios";
 				</script>';
 
             }
@@ -102,7 +102,7 @@ class ConsultoriosC
 
                 echo '<script>
 
-				window.location = "http://localhost/clinica/consultorios";
+				window.location = "' . $_SERVER . 'clinica/consultorios";
 				</script>';
 
             }

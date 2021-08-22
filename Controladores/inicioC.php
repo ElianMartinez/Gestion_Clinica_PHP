@@ -96,7 +96,7 @@ class InicioC{
 						<input type="file" name="logo">
 						<br>
 
-						<img src="http://localhost/clinica/'.$resultado["logo"].'" width="200px;">
+						<img src="'.$_SERVER.'clinica/'.$resultado["logo"].'" width="200px;">
 
 						
 
@@ -108,7 +108,7 @@ class InicioC{
 						<input type="file" name="favicon">
 						<br>
 
-						<img src="http://localhost/clinica/'.$resultado["favicon"].'" width="200px;">
+						<img src="'.$_SERVER.'clinica/'.$resultado["favicon"].'" width="200px;">
 
 						
 

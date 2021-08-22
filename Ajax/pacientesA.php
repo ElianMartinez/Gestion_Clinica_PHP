@@ -78,7 +78,14 @@ if (isset($_POST["verUsuariosWait"])) {
     echo json_encode($retorno);
 }
 
-if (isset($_POST["id_userWait"])) {
-    $retorno = PacientesM::UpdateUserWait($_POST["id_userWait"]);
-    echo json_encode($retorno);
+if (isset($_POST['userA']) && isset($_POST['passA']) && isset($_POST['idA'])) {
+    $arr = array("user" => $_POST['userA'], "pass" => $_POST["passA"], "correo" => $_POST["correoA"], "namelast" => $_POST["namecompleto"], "id" => $_POST["idA"]);
+    if ($_POST['S'] == "A") {
+        $resp = PacientesM::UpdateUserWait($arr);
+        echo $resp;
+    } else {
+        $resp = PacientesM::CancellUser($arr);
+        echo $resp;
+
+    }
 }

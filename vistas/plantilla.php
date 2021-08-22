@@ -1,6 +1,7 @@
 <?php
+header("Access-Control-Allow-Origin: *");
 include_once "core/config.php";
-session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -128,14 +129,9 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 
         include "modulos/codeVeri.php";
 
-    } elseif ($_GET["url"] == "listaEspera") {
-        include "modulos/listaEspera.php";
     }
-
 } else {
-
     include "modulos/seleccionar.php";
-
 }
 
 ?>

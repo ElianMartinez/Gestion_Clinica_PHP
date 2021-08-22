@@ -157,7 +157,7 @@ if ($_SESSION["foto"] == "") {
 
 } else {
 
-    echo '<img src=' . $_SERVER . 'clinica/' . $_SESSION["foto"] . '" class="user-image" alt="User Image">';
+    echo '<img src=' . $_SERVER . 'clinica/' . $_SESSION["foto"] . ' class="user-image" alt="User Image">';
 }
 
 ?>
@@ -248,9 +248,9 @@ function cambiarVista(data){
 $("#noti-drop-content").empty();
 
   data.map(i => {
-    var apend = '<li><div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div><div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a class="text-noti" href="">';
+    var apend = `<li><div class="col-md-3 col-sm-3 col-xs-3"><div class="notify-img"><img src="http://placehold.it/45x45" alt=""></div></div><div class="col-md-9 col-sm-9 col-xs-9 pd-l0"><a class="text-noti" onclick="cambiarLeido(${i.id})" href="<?php echo $_SERVER; ?>clinica/pacientes">`;
       apend += i.mensaje;
-      apend += `</a> <a onclick="cambiarLeido(${i.id})"  class="rIcon"><i class="fa fa-eye"></i></a><hr><p class="time">`;
+      apend += `</a> <a  onclick="cambiarLeido(${i.id})"  class="rIcon"><i class="fa fa-eye"></i></a><hr><p class="time">`;
       apend += moment(i.datetime).fromNow();
       apend += '</p></div></li>';
       html += apend;
@@ -270,7 +270,6 @@ function cambiarLeido(id){
     contentType: false,
     processData: false,
     success: function (resultado) {
-      console.log(resultado)
       if(resultado == "true"){
         buscarNotificacion();
       }

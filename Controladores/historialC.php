@@ -16,7 +16,7 @@ public function BorrarHistorialC(){
 
 				echo '<script>
 
-				window.location = "http://localhost/clinica/historial";
+				window.location = "'.$_SERVER.'clinica/historial";
 				</script>';
 
 			}

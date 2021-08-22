@@ -67,11 +67,11 @@ class SecretariasC{
 
 				if($resultado["foto"] != ""){
 
-					echo '<td><img src="http://localhost/clinica/'.$resultado["foto"].'" class="img-responsive" width="40px"></td>';
+					echo '<td><img src="'.$_SERVER.'clinica/'.$resultado["foto"].'" class="img-responsive" width="40px"></td>';
 
 				}else{
 
-					echo '<td><img src="http://localhost/clinica/Vistas/img/defecto.png" class="img-responsive" width="40px"></td>';
+					echo '<td><img src="'.$_SERVER.'clinica/Vistas/img/defecto.png" class="img-responsive" width="40px"></td>';
 
 				}
 
@@ -79,7 +79,7 @@ class SecretariasC{
 
 				echo '<td>
 						
-					<a href="http://localhost/clinica/perfil-S/'.$resultado["id"].'">
+					<a href="'.$_SERVER.'clinica/perfil-S/'.$resultado["id"].'">
 						
 						<button class="btn btn-success"><i class="fa fa-pencil"></i></button>
 
@@ -134,11 +134,11 @@ class SecretariasC{
 
 						if($resultado["foto"] == ""){
 
-							echo '<img src="http://localhost/clinica/Vistas/img/defecto.png" width="200px;">';
+							echo '<img src="'.$_SERVER.'clinica/Vistas/img/defecto.png" width="200px;">';
 
 						}else{
 
-							echo '<img src="http://localhost/clinica/'.$resultado["foto"].'" width="200px;">';
+							echo '<img src="'.$_SERVER.'clinica/'.$resultado["foto"].'" width="200px;">';
 
 						}
 
@@ -213,7 +213,7 @@ class SecretariasC{
 
 				echo '<script>
 
-				window.location = "http://localhost/clinica/perfil-S/'.$_SESSION["id"].'";
+				window.location = "'.$_SERVER.'clinica/perfil-S/'.$_SESSION["id"].'";
 				</script>';
 
 			}

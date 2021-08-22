@@ -33,12 +33,6 @@
           </a>
         </li>
         <li>
-          <a href="<?php echo $_SERVER; ?>clinica/listaEspera">
-            <i class="fa fa-list-ol"></i>
-            <span>Lista de espera Usuarios</span>
-          </a>
-        </li>
-        <li>
 
           <a href="<?php echo $_SERVER; ?>clinica/historialSecretaria/">
 
