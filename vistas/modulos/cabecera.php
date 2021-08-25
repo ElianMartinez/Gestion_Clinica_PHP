@@ -214,7 +214,7 @@ echo '<a href="' . $_SERVER . 'clinica/perfil-' . $_SESSION["rol"] . '" class="b
   formDara.append('tabla', '<?php echo $_SESSION["rol"] ?>');
 
   $.ajax({
-    url: "Ajax/pacientesA.php",
+    url: "<?php echo $_SERVER ?>clinica/Ajax/pacientesA.php",
     method: "POST",
     data: formDara,
     cache: false,
@@ -263,7 +263,7 @@ function cambiarLeido(id){
   formDara.append('id_noti', id);
 
   $.ajax({
-    url: "Ajax/pacientesA.php",
+    url: "<?php echo $_SERVER ?>clinica/Ajax/pacientesA.php",
     method: "POST",
     data: formDara,
     cache: false,
