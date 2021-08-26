@@ -66,11 +66,8 @@ class CitasC{
 
 		$tablaBD = "citas";
 
-
-
 		$resultado = CitasM::VerCitasM($tablaBD);
-		
-
+ 
 		return $resultado;
 
 	}

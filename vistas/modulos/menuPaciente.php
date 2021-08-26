@@ -22,7 +22,7 @@
 
         <li>
         <?php
-echo '  <a href="' . $_SERVER . 'clinica/historial/' . $_SESSION["id"] . '">';
+echo '  <a href="' . $_SERVER . 'clinica/historial/">';
 ?>
             <i class="fa fa-calendar-check-o"></i>
             <span>Historial</span>
