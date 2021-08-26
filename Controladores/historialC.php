@@ -1,27 +1,27 @@
 <?php
 
-class HistorialC{
+class HistorialC
+{
 
-public function BorrarHistorialC(){
+    public function BorrarHistorialC()
+    {
 
-	if(substr($_GET["url"], 10)){
+        if (substr($_GET["url"], 10)) {
 
-			$tablaBD = "citas";
+            $tablaBD = "citas";
+            $id = substr($_GET["url"], 10);
+            if (isset($id)) {
+                $resultado = HistorialM::BorrarHistoriaM($tablaBD, $id);
+                if ($resultado == true) {
+                    echo '<script>
+					// window.location = "' . $_SERVER . 'clinica/historial";
+					</script>';
+                } else {
 
-			$id = substr($_GET["url"], 10);
+                }
+            }
 
-			$resultado = HistorialM::BorrarHistoriaM($tablaBD, $id);
+        }
 
-			if($resultado == true){
-
-				echo '<script>
-
-				window.location = "'.$_SERVER.'clinica/historial";
-				</script>';
-
-			}
-
-		}
-
-	}
+    }
 }

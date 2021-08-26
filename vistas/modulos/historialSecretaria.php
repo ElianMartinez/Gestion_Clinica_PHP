@@ -26,11 +26,8 @@ if ($_SESSION["rol"] != "Secretaria") {
 							<th>Consultorio</th>
 							<th>Borrar</th>
 						</tr>
-
 					</thead>
-
 					<tbody>
-
 						<?php
 $resultado = CitasC::VerCitasC();
 foreach ($resultado as $key => $value) {
@@ -77,7 +74,7 @@ $borrarV = new HistorialSecretariaC();
 $borrarV->BorrarHistorialSecretariaC();
 ?>
 
-<script>
+<!-- <script>
 	var valor= moment('2021-08-12:10:00:00').isBetween('2021-08-12:10:00:00','2021-08-12:17:00:00');
 	console.log(valor);
-</script>
+</script> -->

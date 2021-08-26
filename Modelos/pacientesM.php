@@ -154,7 +154,6 @@ class PacientesM extends ConexionBD
 
             $pdo->bindParam(":code", $d, PDO::PARAM_INT);
             if ($pdo->execute()) {
-
                 try {
                     $resultado3 = PacientesM::IngresarPacienteM2("paciente_temp", $datosC);
                     PacientesM::email_send($d, $datosC["nombre"], $datosC["apellido"], $datosC["correo"], $resultado3["id"]);
@@ -168,7 +167,6 @@ class PacientesM extends ConexionBD
         } else {
             return false;
         }
-
     }
 
     private static function email_sen32($user, $pass, $nombreApellido, $correo)
@@ -185,9 +183,7 @@ class PacientesM extends ConexionBD
 
         $message .= "<tbody>
      <tr align='center' height='50' style='font-family:Verdana, Geneva, sans-serif;'>
-
 </tr>
-
 <tr>
 <td colspan='4' style='padding:15px;'>
 <p style='font-size:20px;'>Hola <b>" . $nombreApellido . "</b>. Su registro ha sido <b>RECHAZADO</b></p>
@@ -310,17 +306,11 @@ class PacientesM extends ConexionBD
             return $pdo->fetchAll();
 
         } else {
-
             $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE $columna = :$columna ORDER BY apellido ASC");
-
             $pdo->bindParam(":" . $columna, $valor, PDO::PARAM_STR);
-
             $pdo->execute();
-
             return $pdo->fetch();
-
         }
-
         $pdo->close();
         $pdo = null;
 

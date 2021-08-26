@@ -152,32 +152,22 @@
               <?php
 
 if ($_SESSION["foto"] == "") {
-
     echo '<img src="' . $_SERVER . 'clinica/Vistas/img/defecto.png" class="user-image" alt="User Image">';
-
 } else {
-
     echo '<img src=' . $_SERVER . 'clinica/' . $_SESSION["foto"] . ' class="user-image" alt="User Image">';
 }
-
 ?>
-
-
-
               <span class="hidden-xs"><?php echo $_SESSION["nombre"];
 echo " ";
 echo $_SESSION["apellido"]; ?></span>
 
             </a>
             <ul class="dropdown-menu">
-
               <li class="user-footer">
                 <div class="pull-left">
-
                   <?php
 
 echo '<a href="' . $_SERVER . 'clinica/perfil-' . $_SESSION["rol"] . '" class="btn btn-primary btn-flat">Perfil</a>';
-
 ?>
                 </div>
                 <div class="pull-right">
@@ -241,7 +231,7 @@ echo '<a href="' . $_SERVER . 'clinica/perfil-' . $_SESSION["rol"] . '" class="b
   });
 }
 
-setInterval('buscarNotificacion()',3000);
+setInterval('buscarNotificacion()',500);
 
 function cambiarVista(data){
   let html ='';
