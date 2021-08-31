@@ -122,6 +122,25 @@
   color: #333;
 }
 
+@keyframes example {
+  0% {background-color: rgb(0, 0, 0);}
+  50% {background-color: rgb(214, 0, 0);}
+  100% {background-color: rgb(241, 8, 8);}
+
+}
+
+.notification .badge {
+
+  border-radius: 50%;
+  background: red;
+  color: white;
+  animation-name: example;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  transition: 0.1s;
+}
+
+
 #noti-drop-content text-noti {
   font-size: 25px;
 }
@@ -180,7 +199,10 @@ echo '<a href="' . $_SERVER . 'clinica/perfil-' . $_SESSION["rol"] . '" class="b
       </div>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Notificaciones (<b  class="contador_noti">0</b>)</a>
+          <a href="#" aria-haspopup="true" aria-expanded="false" role="button" data-toggle="dropdown" class="notification dropdown-toggle">
+  <span>Notificaciones</span>
+  <span class="contador_noti"></span>
+</a>
           <ul  class="dropdown-menu notify-drop">
             <div class="notify-drop-title">
             	<div class="row">
@@ -214,12 +236,18 @@ echo '<a href="' . $_SERVER . 'clinica/perfil-' . $_SESSION["rol"] . '" class="b
       var noti =JSON.parse(resultado);
       if(numNotifica == 0){
         numNotifica = noti.length;
+        if(noti.length > 0){
+          $(".contador_noti").addClass("badge"); 
+        }else{
+          $(".contador_noti").removeClass("badge"); 
+        }
         $(".contador_noti").empty();
         $(".contador_noti").append(noti.length);
 
         cambiarVista(noti);
       }else{
         if(numNotifica != noti.length){
+          $(".contador_noti").addClass("badge"); 
           cambiarVista(noti);
         numNotifica = noti.length;
         $(".contador_noti").empty();

@@ -2,6 +2,7 @@
 
 require_once "../Controladores/pacientesC.php";
 require_once "../Modelos/pacientesM.php";
+require_once "../Modelos/citasM.php";
 
 class PacientesA
 {
@@ -88,4 +89,14 @@ if (isset($_POST['userA']) && isset($_POST['passA']) && isset($_POST['idA'])) {
         echo $resp;
 
     }
+}
+
+if (isset($_POST["idDoctor"])) {
+    $res = PacientesM::BuscarCitas($_POST["idDoctor"]);
+    echo json_encode($res);
+}
+
+if (isset($_POST["idCita"]) && isset($_POST["nombreDoctor"]) && isset($_POST["fechaI"]) && isset($_POST["fechaF"])) {
+    $array = array("idCita" => $_POST["idCita"], "nameDoc" => $_POST["nombreDoctor"], "fechaF" => $_POST["fechaF"], "fechaI" => $_POST["fechaI"], "idPa" => $_POST["idPa"]);
+    echo CitasM::UpdateHous($array);
 }

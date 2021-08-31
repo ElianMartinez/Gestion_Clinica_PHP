@@ -41,6 +41,15 @@
           </a>
         </li>
 
+        <li>
+        <?php
+echo '  <a href="' . $_SERVER . 'clinica/export/">';
+?>
+          <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+            <span>Buscar y Exportar</span>
+          </a>
+        </li>
+
       </ul>
 
     </section>

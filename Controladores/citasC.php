@@ -88,26 +88,11 @@ class CitasC{
 			$resultado = CitasM::PedirCitaDoctorM($tablaBD, $datosC);
 
 			if($resultado == true){
-
-
 				echo '<script>
-
-
-
-
 				window.location = "Citas/"'.$Did.';
 				</script>';
-
-
 			}
-
-
-
-
 		}
-
-
-
 	}
 
 	public function PedirCitaSecretariaC(){

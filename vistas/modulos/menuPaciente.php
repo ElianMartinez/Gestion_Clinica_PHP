@@ -36,6 +36,8 @@ echo '  <a href="' . $_SERVER . 'clinica/historial/">';
           </a>
         </li>
 
+        
+
       </ul>
 
     </section>

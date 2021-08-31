@@ -79,7 +79,7 @@ if($_SESSION["rol"] != "Paciente"){
 										<div class="btn-group">
 											
 											
-											<a href="http://localhost/clinica/historial/'.$value["id"].'">
+											<a href="'.$_SERVER.'clinica/historial/'.$value["id"].'">
 											
 											<button class="btn btn-danger"><i class="fa fa-times"></i> Borrar</button>
 											

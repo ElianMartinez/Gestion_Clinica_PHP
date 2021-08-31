@@ -371,6 +371,18 @@ class PacientesM extends ConexionBD
 
     }
 
+    public static function BuscarCitas($datosC)
+    {
+
+        $pdo = ConexionBD::cBD()->prepare("SELECT inicio FROM citas WHERE id_doctor = :id");
+        $pdo->bindParam(":id", $datosC, PDO::PARAM_INT);
+        $pdo->execute();
+        return $pdo->fetchAll();
+        $pdo->close();
+        $pdo = null;
+
+    }
+
     //Ingreso de los Pacientes
     public static function IngresarPacienteM2($tablaBD, $datosC)
     {
