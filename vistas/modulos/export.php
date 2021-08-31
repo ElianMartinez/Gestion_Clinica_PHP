@@ -56,10 +56,9 @@ console.log("hoal")
     processData: false,
     success: function (re) {
      var resul = JSON.parse(re);
-
-     var html ="<option value='0'>Seleccionar...<option>";
+     var html ="";
      resul.map( i => {
-         html += `<option data="${i.nombre} ${i.apellido}" value="${i.id}">${i.nombre} ${i.apellido}</option>`;
+         html += `<option value="${i.id}">${i.nombre} ${i.apellido}</option>`;
      });
 
      $("#selectDoct").empty();
@@ -139,7 +138,7 @@ function generate() {
             minCellHeight: 40
         }
     })
-    doc.save('Marks_Of_Students.pdf');
+    doc.save(`Citas de ${$("#selectDoct option:selected").text()}.pdf`);
 }
 
 </script>
