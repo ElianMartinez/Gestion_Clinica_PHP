@@ -52,13 +52,29 @@ class CitasM extends ConexionBD
     //Mostrar Citas
     public static function VerCitasM($tablaBD)
     {
-
         $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD");
-
         $pdo->execute();
-
         return $pdo->fetchAll();
+        $pdo->close();
+        $pdo = null;
 
+    }
+
+    public static function VerCitasPaM($tablaBD, $id)
+    {
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD where id_paciente = $id");
+        $pdo->execute();
+        return $pdo->fetchAll();
+        $pdo->close();
+        $pdo = null;
+
+    }
+
+    public static function VerCitasidM($tablaBD, $id)
+    {
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD where id_consultorio = $id");
+        $pdo->execute();
+        return $pdo->fetchAll();
         $pdo->close();
         $pdo = null;
 
@@ -68,7 +84,7 @@ class CitasM extends ConexionBD
     public static function PedirCitaDoctorM($tablaBD, $datosC)
     {
 
-        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (id_doctor, id_consultorio, nyaP, documento, inicio, fin) VALUES (:id_doctor, :id_consultorio, :nyaP, :documento, :inicio, :fin)");
+        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (id_doctor, id_consultorio, nyaP, documento, inicio, fin, id_paciente, tiempoa, tiempob,fechaC) VALUES (:id_doctor, :id_consultorio, :nyaP, :documento, :inicio, :fin, :idP,:inicio,:fin,:fin )");
 
         $pdo->bindParam(":id_doctor", $datosC["Did"], PDO::PARAM_INT);
         $pdo->bindParam(":id_consultorio", $datosC["Cid"], PDO::PARAM_INT);
@@ -76,6 +92,7 @@ class CitasM extends ConexionBD
         $pdo->bindParam(":documento", $datosC["documentoP"], PDO::PARAM_STR);
         $pdo->bindParam(":inicio", $datosC["fyhIC"], PDO::PARAM_STR);
         $pdo->bindParam(":fin", $datosC["fyhFC"], PDO::PARAM_STR);
+        $pdo->bindParam(":idP", $datosC["pID"], PDO::PARAM_INT);
 
         if ($pdo->execute()) {
             return true;

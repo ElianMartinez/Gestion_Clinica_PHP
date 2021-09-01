@@ -1,39 +1,38 @@
 <?php
 
-if($_SESSION["rol"] != "Paciente"){
+if ($_SESSION["rol"] != "Paciente") {
 
-	echo '<script>
+    echo '<script>
 
 	window.location = "inicio";
 	</script>';
 
-	return;
+    return;
 
 }
-
 
 ?>
 
 <div class="content-wrapper">
-	
+
 	<section class="content-header">
-		
+
 		<h1>Su Historial de Citas Médicas</h1>
 
 	</section>
 
 	<section class="content">
-		
+
 		<div class="box">
-			
+
 			<div class="box-body">
-				
+
 				<table class="table table-bordered table-hover table-striped DT">
-					
+
 					<thead>
-						
+
 						<tr>
-							
+
 							<th>Fecha y Hora</th>
 							<th>Doctor</th>
 							<th>Consultorio</th>
@@ -47,60 +46,31 @@ if($_SESSION["rol"] != "Paciente"){
 
 						<?php
 
-						$resultado = CitasC::VerCitasC();
+$resultado = CitasC::VerCitasPacienteC($_SESSION["id"]);
+foreach ($resultado as $key => $value) {
 
-						foreach ($resultado as $key => $value) {
-							
-							if($_SESSION["documento"] == $value["documento"]){
-
-								echo '<tr>
-
-									<td>'.$value["inicio"].'</td>';
-
-									$columna = "id";
-									$valor = $value["id_doctor"];
-
-									$doctor = DoctoresC::DoctorC($columna, $valor);
-
-									echo '<td>'.$doctor["apellido"].' '.$doctor["nombre"].'</td>';
-
-									
-									$columna = "id";
-									$valor = $value["id_consultorio"];
-
-									$consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
-
-									echo '<td>'.$consultorio["nombre"].'</td>
-
-										
-
+    echo '<tr><td>' . $value["inicio"] . '</td>';
+    $columna = "id";
+    $valor = $value["id_doctor"];
+    $doctor = DoctoresC::DoctorC($columna, $valor);
+    echo '<td>' . $doctor["apellido"] . ' ' . $doctor["nombre"] . '</td>';
+    $columna = "id";
+    $valor = $value["id_consultorio"];
+    $consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
+    echo '<td>' . $consultorio["nombre"] . '</td>
 									<td>
-										
 										<div class="btn-group">
-											
-											
-											<a href="'.$_SERVER.'clinica/historial/'.$value["id"].'">
-											
-											<button class="btn btn-danger"><i class="fa fa-times"></i> Borrar</button>
-											
-
+											<a onClick="borrarL(' . $value["id"] . ');">
+											<button class="btn btn-danger"><i class="fa fa-ban"></i> Cancelar</button>
 										</div>
-
 									</td>
-
 								 </tr>';
+}
+
+?>
 
 
 
-							}
-							
-
-						}
-
-						?> 
-
-						
-						
 
 					</tbody>
 
@@ -117,5 +87,22 @@ if($_SESSION["rol"] != "Paciente"){
 <?php
 
 $borrarH = new HistorialC();
-$borrarH -> BorrarHistorialC();
+$borrarH->BorrarHistorialC();
 
+?>
+<script>
+
+function borrarL(id) {
+	Swal.fire({
+  title: '<div style="font-size: 30px">Estas Seguro?</div>',
+  showDenyButton: true,
+  confirmButtonText: `<div style="font-size: 30px">Si</div>`,
+  denyButtonText: `<div style="font-size: 30px">No</div>`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    window.location = "<?php echo $_SERVER ?>clinica/historial/"+id;
+  }
+});
+}
+</script>

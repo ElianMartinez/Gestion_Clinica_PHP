@@ -12,7 +12,7 @@
         </select>
     </div>
     <div class="col-md-2">
-    <input class="form-control" style="background:green; color: white;" type="button" onclick="generate()" value="Export To PDF " />
+    <input class="form-control" style="background:green; color: white;" type="button" onclick="generate()" value="Exportar a PDF " />
     </div>
     </div>
             <table id="tableDrop" class="table">
@@ -96,7 +96,7 @@ function buscar(doctorId, name){
       <td>${i.documento}</td>
     </tr>`});
     }else{
-        html += "<tr><td colspan='14'>No hay registros para </td></tr>";
+        html += "<tr><td colspan='14'>No hay registros</td></tr>";
     }
      $("#bodyTable").empty();
      $("#bodyTable").append(html);

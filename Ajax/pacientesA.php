@@ -91,8 +91,8 @@ if (isset($_POST['userA']) && isset($_POST['passA']) && isset($_POST['idA'])) {
     }
 }
 
-if (isset($_POST["idDoctor"])) {
-    $res = PacientesM::BuscarCitas($_POST["idDoctor"]);
+if (isset($_POST["idDoctor"]) && isset($_POST["Fecha"])) {
+    $res = PacientesM::BuscarCitas($_POST["idDoctor"], $_POST["Fecha"]);
     echo json_encode($res);
 }
 

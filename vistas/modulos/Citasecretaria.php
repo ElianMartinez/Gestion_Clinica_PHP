@@ -1,59 +1,58 @@
 <?php
 
-if($_SESSION["rol"] != "Secretaria"){
+if ($_SESSION["rol"] != "Secretaria") {
 
-	echo '<script>
+    echo '<script>
 
 	window.location = "inicio";
 	</script>';
 
-	return;
+    return;
 
 }
-
 
 ?>
 
 <div class="content-wrapper">
-	
+
 	<section class="content-header">
 
 		<?php
 
-		$columna = "id";
-		$valor = substr($_GET["url"], 15);
+$columna = "id";
+$valor = substr($_GET["url"], 15);
 
-		$resultado = DoctoresC::DoctorC($columna, $valor);
+$resultado = DoctoresC::DoctorC($columna, $valor);
 
-		if($resultado["sexo"] == "Femenino"){
+if ($resultado["sexo"] == "Femenino") {
 
-			echo '<h1>Doctora: '.$resultado["apellido"].' '.$resultado["nombre"].'</h1>';
+    echo '<h1>Doctora: ' . $resultado["apellido"] . ' ' . $resultado["nombre"] . '</h1>';
 
-		}else{
+} else {
 
-			echo '<h1>Doctor: '.$resultado["apellido"].' '.$resultado["nombre"].'</h1>';
+    echo '<h1>Doctor: ' . $resultado["apellido"] . ' ' . $resultado["nombre"] . '</h1>';
 
-		}
+}
 
-		$columna = "id";
-		$valor = $resultado["id_consultorio"];
+$columna = "id";
+$valor = $resultado["id_consultorio"];
 
-		$consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
+$consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
 
-		echo '<br>
-		<h1>Consultorio de: '.$consultorio["nombre"].'</h1>';
+echo '<br>
+		<h1>Consultorio de: ' . $consultorio["nombre"] . '</h1>';
 
-		?>
-		
-		
-		
+?>
+
+
+
 
 	</section>
 
 	<section class="content">
-		
+
 		<div class="box">
-			
+
 
 			<div class="box-body">
 
@@ -71,69 +70,69 @@ if($_SESSION["rol"] != "Secretaria"){
 
 
 <div class="modal fade" rol="dialog" id="CitaModal">
-	
+
 	<div class="modal-dialog">
-		
+
 		<div class ="modal-content">
-			
+
 			<form method="post">
 
 				<div class = "modal-body">
-					
+
 					<div class ="box-body">
 
 						<?php
 
-						$columna = "id";
-						$valor = substr($_GET["url"], 15);
+$columna = "id";
+$valor = substr($_GET["url"], 15);
 
-						$resultado = DoctoresC::DoctorC($columna, $valor);
+$resultado = DoctoresC::DoctorC($columna, $valor);
 
-						echo '<div class="form-group">
+echo '<div class="form-group">
 
-							<input type="hidden" name="Did" value="'.$resultado["id"].'">
-							  
+							<input type="hidden" name="Did" value="' . $resultado["id"] . '">
+
 						</div>';
 
-						$columna = "id";
-						$valor = $resultado["id_consultorio"];
+$columna = "id";
+$valor = $resultado["id_consultorio"];
 
-						$consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
+$consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
 
-						echo '<div class="form-group">
+echo '<div class="form-group">
 
-								<input type="hidden" name="Cid" value="'.$consultorio["id"].'">
+								<input type="hidden" name="Cid" value="' . $consultorio["id"] . '">
 
-						
+
 					</div>';
 
-						?>
+?>
 
 						<div class="form-group">
-							
+
 							<h2>Seleccionar Paciente:</h2>
 
 							<?php
 
-							echo '<select class="form-control input-lg" name="nombreP">
-								
+echo '<select id="selectSE" class="form-control input-lg" name="nombreP">
+
 								<option>Paciente...</option>';
 
-								$columna = null;
-								$valor = null;
+$columna = null;
+$valor = null;
 
-								$resultado = PacientesC::VerPacientesC($columna, $valor);
+$resultado = PacientesC::VerPacientesC($columna, $valor);
 
-								foreach ($resultado as $key => $value) {
-									
-									echo'<option value="'.$value["nombre"].' '.$value["apellido"].'">'.$value["apellido"].' '.$value["nombre"].'</option>';
-								}
+foreach ($resultado as $key => $value) {
 
-							?>
+    echo '<option dataID="' . $value["id"] . '" value="' . $value["nombre"] . ' ' . $value["apellido"] . '">' . $value["apellido"] . ' ' . $value["nombre"] . '</option>';
+}
 
-							
+?>
 
-								
+
+
+
 
 							</select>
 
@@ -142,43 +141,46 @@ if($_SESSION["rol"] != "Secretaria"){
 						<div class="form-group">
 
 							<h2>Documento:</h2>
-							
+
 						<input type="text" class="form-control input-lg" name="documentoP"  value="">
 
-						
-							
+
+
 						</div>
-						
+
 
 						<div class="form-group">
 
 							<h2>Fecha:</h2>
-							
+
 						<input type="text" class="form-control input-lg" id="fechaC"  value="" readonly>
 
-						
-							
+
+
 						</div>
 
 						<div class="form-group">
 
 							<h2>Hora:</h2>
-							
+
 							<input type="text" class="form-control input-lg" id="horaC"  value="" readonly>
 
-						
-							
+
+
 						</div>
 
 						<div class="form-group">
 
-							
-							
+
+
 						<input type="hidden" class="form-control input-lg" name="fyhIC" id="fyhIC" value="" readonly>
 
 						<input type="hidden" class="form-control input-lg" name="fyhFC" id="fyhFC" value="" readonly>
-						
-							
+
+						<input type="hidden" class="form-control input-lg" name="idPac" id="idPac" value="" readonly>
+
+
+
 						</div>
 
 					</div>
@@ -186,7 +188,7 @@ if($_SESSION["rol"] != "Secretaria"){
 				</div>
 
 				<div class ="modal-footer">
-					
+
 					<button type="submit" class="btn btn-primary">Pedir Cita</button>
 
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
@@ -195,10 +197,10 @@ if($_SESSION["rol"] != "Secretaria"){
 
 				<?php
 
-				$enviarC = new CitasC();
-				$enviarC -> PedirCitaDoctorC();
+$enviarC = new CitasC();
+$enviarC->PedirCitaDoctorC();
 
-				?>
+?>
 
 
 			</form>
@@ -209,3 +211,11 @@ if($_SESSION["rol"] != "Secretaria"){
 
 </div>
 
+<script>
+	if(window.history.replaceState){
+		window.history.replaceState(null,null,window.location.href);
+	}
+	$("#selectSE").change(() => {
+		$("#idPac").val($("#selectSE option:selected").attr("dataID"));
+	});
+</script>

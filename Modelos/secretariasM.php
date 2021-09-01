@@ -8,7 +8,7 @@ class SecretariasM extends ConexionBD{
 	//Ingreso Secretarias
 	static public function IngresarSecretariaM($tablaBD, $datosC){
 
-		$pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id FROM $tablaBD WHERE usuario = :usuario");
+		$pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id, id_consultorio FROM $tablaBD WHERE usuario = :usuario");
 
 		$pdo -> bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
 
@@ -89,13 +89,15 @@ class SecretariasM extends ConexionBD{
 	//Crear Secretarias
 	static public function CrearSecretariaM($tablaBD, $datosC){
 
-		$pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre, apellido, usuario, clave, rol) VALUES (:nombre, :apellido, :usuario, :clave, :rol)");
+		$pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre, apellido, usuario, clave, rol, id_consultorio) VALUES (:nombre, :apellido, :usuario, :clave, :rol, :idc)");
 
 		$pdo -> bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
 		$pdo -> bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
 		$pdo -> bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
 		$pdo -> bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
 		$pdo -> bindParam(":rol", $datosC["rol"], PDO::PARAM_STR);
+		$pdo -> bindParam(":idc", $datosC["idCon"], PDO::PARAM_INT);
+
 
 		if($pdo -> execute()){
 

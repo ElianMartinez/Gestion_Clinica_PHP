@@ -371,11 +371,11 @@ class PacientesM extends ConexionBD
 
     }
 
-    public static function BuscarCitas($datosC)
+    public static function BuscarCitas($datosC, $fec)
     {
-
-        $pdo = ConexionBD::cBD()->prepare("SELECT inicio FROM citas WHERE id_doctor = :id");
+        $pdo = ConexionBD::cBD()->prepare("SELECT inicio FROM citas WHERE id_doctor = :id and fechaC = :fecha");
         $pdo->bindParam(":id", $datosC, PDO::PARAM_INT);
+        $pdo->bindParam(":fecha", $fec, PDO::PARAM_STR);
         $pdo->execute();
         return $pdo->fetchAll();
         $pdo->close();

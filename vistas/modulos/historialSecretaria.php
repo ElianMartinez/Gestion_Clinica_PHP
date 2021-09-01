@@ -11,6 +11,12 @@ if ($_SESSION["rol"] != "Secretaria") {
 
 }
 ?>
+
+<style>
+.swal2-modal{
+	font_size:25px;
+}
+</style>
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>Historial de Pacientes</h1>
@@ -24,12 +30,13 @@ if ($_SESSION["rol"] != "Secretaria") {
 							<th>Fecha y Hora</th>
 							<th>Doctor</th>
 							<th>Consultorio</th>
+							<th>Paciente</th>
 							<th>Borrar</th>
 						</tr>
 					</thead>
 					<tbody>
 						<?php
-$resultado = CitasC::VerCitasC();
+$resultado = CitasC::VerCitasCID($_SESSION["idc"]);
 foreach ($resultado as $key => $value) {
     echo '<tr>
 		<td>' . $value["inicio"] . '</td>';
@@ -41,9 +48,10 @@ foreach ($resultado as $key => $value) {
     $valor = $value["id_consultorio"];
     $consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
     echo '<td>' . $consultorio["nombre"] . '</td>
+	<td>' . $value["nyaP"] . '</td>
 									<td>
 										<div class="btn-group">
-											<a href="' . $_SERVER . 'clinica/historialSecretaria/' . $value["id"] . '">
+											<a onClick="borrarL(' . $value["id"] . ')">
 											<button class="btn btn-danger"><i class="fa fa-ban"></i> Cancelar</button>
 											</a>
 											<button data-toggle="modal" data-target="#smallShoes" onClick="editarCita(' . $value["id"] . ',`' . $value["inicio"] . '`,`' . $doctor["horarioE"] . '`,`' . $doctor["horarioS"] . '`,' . $doctor["id"] . ',`' . $doctor["nombre"] . ' ' . $doctor["apellido"] . '`, ' . $value["id_paciente"] . ');" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button>
@@ -139,7 +147,7 @@ var newD = new FormData();
   $('[data-toggle="popover"]').popover();
   horaI = he.split(":")[0];
   horaS = hs.split(":")[0];
-console.log(idDoc);
+  console.log(idDoc);
   busCitas(idDoc);
   newD.append("idCita", id);
   newD.append("nombreDoctor", nombre);
@@ -200,6 +208,7 @@ console.log(date.format());
 	function busCitas(id){
 		var datos = new FormData();
   datos.append("idDoctor", id);
+  datos.append("Fecha", fechaOriginal.split(" ")[0]);
 		$.ajax({
     url: "<?php echo $_SERVER; ?>clinica/Ajax/pacientesA.php",
     method: "POST",
@@ -209,7 +218,6 @@ console.log(date.format());
     contentType: false,
     processData: false,
     success: function (resultado) {
-
 res = [];
 		resultado.map((i)=> {
 			res.push(parseInt(i.inicio.split(" ")[1].split(":")[0]));
@@ -218,5 +226,20 @@ res = [];
 
 }
   });
+}
+
+
+function borrarL(id) {
+	Swal.fire({
+  title: '<div style="font-size: 30px">Estas Seguro?</div>',
+  showDenyButton: true,
+  confirmButtonText: `<div style="font-size: 30px">Si</div>`,
+  denyButtonText: `<div style="font-size: 30px">No</div>`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+    window.location = "<?php echo $_SERVER ?>clinica/historialSecretaria/"+id;
+  }
+});
 }
 </script>

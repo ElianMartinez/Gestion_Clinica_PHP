@@ -27,38 +27,30 @@ class ConsultoriosC
     //Ver consultorios
     public static function VerConsultoriosC($columna, $valor)
     {
-
         $tablaBD = "consultorios";
-
         $resultado = ConsultoriosM::VerConsultoriosM($tablaBD, $columna, $valor);
-
         return $resultado;
+    }
 
+    public static function VerConsulC()
+    {
+        $resultado = ConsultoriosM::VerConsu();
+        return $resultado;
     }
 
     //Borrar Consultorios
     public function BorrarConsultorioC()
     {
-
         if (substr($_GET["url"], 13)) {
-
             $tablaBD = "consultorios";
-
             $id = substr($_GET["url"], 13);
-
             $resultado = ConsultoriosM::BorrarConsultorioM($tablaBD, $id);
-
             if ($resultado == true) {
-
                 echo '<script>
-
 				window.location = "' . $_SERVER . 'clinica/consultorios";
-				</script>';
-
+			</script>';
             }
-
         }
-
     }
 
     //Editar consultorios

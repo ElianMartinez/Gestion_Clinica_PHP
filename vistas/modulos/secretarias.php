@@ -30,34 +30,24 @@ if ($_SESSION["rol"] != "Administrador") {
 				<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#CrearSecretaria">Crear Secretaria</button>
 
 			</div>
-
-
 			<div class="box-body">
-
 				<table class="table table-bordered table-hover table-striped dt-responsive DT">
-
 					<thead>
-
 						<tr>
-
 							<th>N°</th>
 							<th>Apellido</th>
 							<th>Nombre</th>
 							<th>Foto</th>
 							<th>Usuario</th>
 							<th>Contraseña</th>
+							<th>Consultorio</th>
 							<th>Borrar</th>
-
 						</tr>
-
 					</thead>
-
 					<tbody>
-
 						<?php
 
 $resultado = SecretariasC::VerSecretariasC();
-
 foreach ($resultado as $key => $value) {
 
     echo '<tr>
@@ -79,7 +69,7 @@ foreach ($resultado as $key => $value) {
     echo '<td>' . $value["usuario"] . '</td>
 
 									<td>' . $value["clave"] . '</td>
-
+									<td>' . $value["id_consultorio"] . '</td>
 									<td>
 
 										<div class="btn-group">
@@ -140,10 +130,7 @@ foreach ($resultado as $key => $value) {
 							<input type="text" class="form-control input-lg" name="nombre" required>
 
 						</div>
-
-
-
-						<div class="form-group">
+				<div class="form-group">
 
 							<h2>Usuario:</h2>
 
@@ -158,6 +145,17 @@ foreach ($resultado as $key => $value) {
 							<input type="text" class="form-control input-lg" name="clave" required>
 
 						</div>
+						<div class="form-group">
+<h2>Consultorio:</h2>
+<select class="form-control" name="IdC">
+	<?php $datos = ConsultoriosC::VerConsulC();
+foreach ($datos as $obj) {
+    echo '<option value="' . $obj["id"] . '">' . $obj["nombre"] . '</option>';
+}
+?>
+</select>
+
+</div>
 
 					</div>
 

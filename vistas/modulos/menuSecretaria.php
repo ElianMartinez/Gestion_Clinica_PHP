@@ -1,3 +1,8 @@
+<?php
+
+$datos = DoctoresM::verDoCons($_SESSION["idc"]);
+?>
+
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -13,7 +18,7 @@
 
 
          <li>
-          <a href="<?php echo $_SERVER; ?>clinica/Csecretaria">
+          <a href="<?php echo $_SERVER; ?>clinica/Citasecretaria/<?php echo $datos["id"]; ?>">
             <i class="fa fa-medkit"></i>
             <span>Agendar Cita</span>
           </a>

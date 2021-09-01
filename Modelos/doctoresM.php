@@ -68,6 +68,17 @@ class DoctoresM extends ConexionBD
         $pdo = null;
     }
 
+    public static function verDoCons($id)
+    {
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM doctores where id_consultorio = :idc ");
+        $pdo->bindParam(":idc", $id, PDO::PARAM_INT);
+        $pdo->execute();
+
+        return $pdo->fetch();
+        $pdo->close();
+        $pdo = null;
+    }
+
     public static function verCitasDoctor($id)
     {
         $pdo = ConexionBD::cBD()->prepare("SELECT * FROM citas where id_doctor = :id");

@@ -49,6 +49,12 @@ class ConsultoriosM extends ConexionBD{
 
 	}
 
+	static public function VerConsu(){
+		$pdo = ConexionBD::cBD()->prepare("SELECT * FROM consultorios");
+			$pdo -> execute();
+			return $pdo -> fetchAll();
+	}
+
 
 
 	//Borrar Consultorios

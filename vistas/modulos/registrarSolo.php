@@ -165,10 +165,10 @@
             >
           </div>
         </div>
-
         <div id="error"></div>
       </form>
-    
+      <div id="loader" class="loader disabled"></div>
+
     <!-- /.login-box-body -->
   </div>
 </body>
