@@ -173,12 +173,22 @@ events:[
 $resultado = CitasC::VerCitasC();
 foreach ($resultado as $key => $value) {
     if ($value["id_doctor"] == substr($_GET["url"], 7)) {
-        echo '{
-              id: ' . $value["id"] . ',
-              title: "' . $value["nyaP"] . '",
-              start: "' . $value["inicio"] . '",
-              end: "' . $value["fin"] . '"
-            },';
+        if ($_SESSION["id"] == $value["id_paciente"]) {
+            echo '{
+                id: ' . $value["id"] . ',
+                title: "' . $value["nyaP"] . '",
+                start: "' . $value["inicio"] . '",
+                end: "' . $value["fin"] . '"
+              },';
+        } else {
+            echo '{
+                id: ' . $value["id"] . ',
+                title: "OCUPADO",
+                start: "' . $value["inicio"] . '",
+                end: "' . $value["fin"] . '"
+              },';
+        }
+
     } else if ($value["id_doctor"] == substr($_GET["url"], 6)) {
 
         echo '{
@@ -191,8 +201,6 @@ foreach ($resultado as $key => $value) {
     }if ($value["id_doctor"] == substr($_GET["url"], 15)) {
 
         echo '{
-
-
               id: ' . $value["id"] . ',
               title: "' . $value["nyaP"] . '",
               start: "' . $value["inicio"] . '",
@@ -231,12 +239,9 @@ if ($_SESSION["rol"] == "Paciente") {
               maxTime: "' . $resultado["horarioS"] . '",';
 
 }if ($_SESSION["rol"] == "Secretaria") {
-
     $columna = "id";
     $valor = substr($_GET["url"], 15);
-
     $resultado = DoctoresC::DoctorC($columna, $valor);
-
     echo 'scrollTime: "' . $resultado["horarioE"] . '",
               minTime: "' . $resultado["horarioE"] . '",
               maxTime: "' . $resultado["horarioS"] . '",';
@@ -246,8 +251,11 @@ if ($_SESSION["rol"] == "Paciente") {
 
 dayClick:function(date,jsEvent,view){
 
-    $('#CitaModal').modal();
-    var fecha = date.format();
+    if(date.format() >= moment().format()){
+        $('#CitaModal').modal();
+        var fecha = date.format();
+
+
       var hora2 = ("01:00:00").split(":");
 
       fecha = fecha.split("T");
@@ -274,6 +282,10 @@ dayClick:function(date,jsEvent,view){
       $('#fyhFB').val(horaFinal+":00:00");
 
       $('#fechaz').val(fecha[0]);
+
+    }else{
+        alert("No puede agendar una cita en el tiempo pasado.")
+    }
 
 }
 });

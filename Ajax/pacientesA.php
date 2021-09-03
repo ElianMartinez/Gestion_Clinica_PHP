@@ -97,6 +97,12 @@ if (isset($_POST["idDoctor"]) && isset($_POST["Fecha"])) {
 }
 
 if (isset($_POST["idCita"]) && isset($_POST["nombreDoctor"]) && isset($_POST["fechaI"]) && isset($_POST["fechaF"])) {
-    $array = array("idCita" => $_POST["idCita"], "nameDoc" => $_POST["nombreDoctor"], "fechaF" => $_POST["fechaF"], "fechaI" => $_POST["fechaI"], "idPa" => $_POST["idPa"]);
+    $message = "Su cita del " . $_POST["fechaA"] . " con el doctor " . $_POST["nombreDoctor"] . " fue cambiada para el " . $_POST["fechaI2"];
+    $array = array("idCita" => $_POST["idCita"], "nameDoc" => $_POST["nombreDoctor"], "fechaF" => $_POST["fechaF"], "fechaI" => $_POST["fechaI"], "idPa" => $_POST["idPa"], "message" => $message, "idPa" => $_POST["idPa"]);
     echo CitasM::UpdateHous($array);
+
+}
+
+if (isset($_POST["IDPagar"])) {
+    echo CitasM::Pagar($_POST['IDPagar']);
 }

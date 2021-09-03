@@ -147,7 +147,17 @@ foreach ($resultado as $key => $value) {
 
 
 						</div>
-
+						<div class="form-group">
+							<h2>Método de Pago:</h2>
+							<select  class="form-control input-lg selectpicker" id="mpago" name="mpago" value="">
+								<option value="s">
+								<i  style="margin:5px" class="fa fa-shield" aria-hidden="true"></i> Seguro
+								</option>
+								<option value="e">
+								<i style="margin:5px" class="fa fa-money" aria-hidden="true"></i> Efectivo
+								</option>
+							</select>
+						</div>
 
 						<div class="form-group">
 
@@ -160,14 +170,11 @@ foreach ($resultado as $key => $value) {
 						</div>
 
 						<div class="form-group">
-
 							<h2>Hora:</h2>
-
 							<input type="text" class="form-control input-lg" id="horaC"  value="" readonly>
-
-
-
 						</div>
+
+
 
 						<div class="form-group">
 

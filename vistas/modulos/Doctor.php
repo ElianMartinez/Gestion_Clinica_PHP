@@ -143,6 +143,17 @@ if($_SESSION["rol"] != "Paciente"){
 						
 							
 						</div>
+						<div class="form-group">
+							<h2>Método de Pago:</h2>
+							<select  class="form-control input-lg selectpicker" id="mpago" name="mpago" value="">
+								<option value="s">
+								<i  style="margin:5px" class="fa fa-shield" aria-hidden="true"></i> Seguro
+								</option>
+								<option value="e">
+								<i style="margin:5px" class="fa fa-money" aria-hidden="true"></i> Efectivo
+								</option>
+							</select>
+						</div>
 
 						<div class="form-group">
 

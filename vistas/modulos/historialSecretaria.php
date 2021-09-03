@@ -31,6 +31,8 @@ if ($_SESSION["rol"] != "Secretaria") {
 							<th>Doctor</th>
 							<th>Consultorio</th>
 							<th>Paciente</th>
+							<th>Método de Pago</th>
+							<th>Pago</th>
 							<th>Borrar</th>
 						</tr>
 					</thead>
@@ -38,6 +40,25 @@ if ($_SESSION["rol"] != "Secretaria") {
 						<?php
 $resultado = CitasC::VerCitasCID($_SESSION["idc"]);
 foreach ($resultado as $key => $value) {
+    $mp = "";
+    $pa = "";
+    $btPa = "";
+
+    if ($value["metodoP"] == "s") {
+        $mp = '<button  class="btn"><i style="margin:5px" class="fa fa-shield" aria-hidden="true"></i> Seguro </button>';
+    } else {
+        $mp = '<button  class="btn"><i style="margin:5px" class="fa fa-money" aria-hidden="true"></i> Efectivo </button>';
+    }
+
+    if ($value["pago"] == true) {
+        $pa = '<button class="btn btn-success"><i style="margin:5px" class="fa fa-check" aria-hidden="true"></i>Listo </button>';
+
+    } else {
+        $pa = '<button class="btn btn-danger"><i style="margin:5px" class="fa fa-ban" aria-hidden="true"></i>No pago </button>';
+        $btPa = '<a onClick="Pagar(' . $value["id"] . ')">
+		<button class="btn btn-success"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Pagar </button>
+		</a>';
+    }
     echo '<tr>
 		<td>' . $value["inicio"] . '</td>';
     $columna = "id";
@@ -49,13 +70,17 @@ foreach ($resultado as $key => $value) {
     $consultorio = ConsultoriosC::VerConsultoriosC($columna, $valor);
     echo '<td>' . $consultorio["nombre"] . '</td>
 	<td>' . $value["nyaP"] . '</td>
+	<td>' . $mp . '</td>
+	<td>' . $pa . '</td>
+
 									<td>
 										<div class="btn-group">
 											<a onClick="borrarL(' . $value["id"] . ')">
 											<button class="btn btn-danger"><i class="fa fa-ban"></i> Cancelar</button>
 											</a>
 											<button data-toggle="modal" data-target="#smallShoes" onClick="editarCita(' . $value["id"] . ',`' . $value["inicio"] . '`,`' . $doctor["horarioE"] . '`,`' . $doctor["horarioS"] . '`,' . $doctor["id"] . ',`' . $doctor["nombre"] . ' ' . $doctor["apellido"] . '`, ' . $value["id_paciente"] . ');" class="btn btn-warning"><i class="fa fa-pencil"></i> Editar</button>
-										</div>
+											' . $btPa . '
+											</div>
 									</td>
 								 </tr>';
 }
@@ -65,7 +90,6 @@ foreach ($resultado as $key => $value) {
 			</div>
 		</div>
 	</section>
-
 <div class="container-fluid">
 
 <!-- The modal -->
@@ -153,6 +177,9 @@ var newD = new FormData();
   newD.append("nombreDoctor", nombre);
   newD.append("idDoct", idDoc);
   newD.append("idPa",idPaciente);
+  newD.append("fechaA",fechaOriginal);
+
+
 
 }
 
@@ -174,8 +201,8 @@ var newD = new FormData();
   	second:0,
   	millisecond:0
   });
-
   newD.append("fechaI", date.format());
+  newD.append("fechaI2", date.format("LLLL"));
   newD.append("fechaF", date.add(1,'h').format());
 
   $.ajax({
@@ -191,6 +218,7 @@ var newD = new FormData();
 		}else{
 			alert("Ocurrio un error intentelo nuevamente...")
 		}
+		console.log(resultado);
 }
   });
 
@@ -228,10 +256,42 @@ res = [];
   });
 }
 
+function Pagar(id){
+	var datos = new FormData();
+  datos.append("IDPagar", id);
 
+  Swal.fire({
+  title: '<div style="font-size: 30px">Estás Seguro Que Quiere Pagar?</div>',
+  showDenyButton: true,
+  confirmButtonText: `<div style="font-size: 30px">Si</div>`,
+  denyButtonText: `<div style="font-size: 30px">No</div>`,
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+  if (result.isConfirmed) {
+	$.ajax({
+    url: "<?php echo $_SERVER; ?>clinica/Ajax/pacientesA.php",
+    method: "POST",
+    data: datos,
+    dataType: "json",
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (resultado) {
+		if(resultado ==true){
+			window.location.reload();
+		}else{
+			alert("Ocurrio un error al pagar");
+		}
+}
+  });
+  }
+});
+
+
+}
 function borrarL(id) {
 	Swal.fire({
-  title: '<div style="font-size: 30px">Estas Seguro?</div>',
+  title: '<div style="font-size: 30px">Estás Seguro?</div>',
   showDenyButton: true,
   confirmButtonText: `<div style="font-size: 30px">Si</div>`,
   denyButtonText: `<div style="font-size: 30px">No</div>`,

@@ -1,27 +1,36 @@
 <?php
 
-
 require_once "ConexionBD.php";
 
-class HistorialSecretariaM extends ConexionBD{
+class HistorialSecretariaM extends ConexionBD
+{
 //Borrar Secretarias
-	
-	static public function BorrarHistoriaSecretariaM($tablaBD, $id){
 
-		$pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");
+    public static function BorrarHistoriaSecretariaM($tablaBD, $id)
+    {
 
-		$pdo -> bindParam(":id", $id, PDO::PARAM_INT);
+        $pdo1 = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD WHERE id = :id");
+        $pdo1->bindParam(":id", $id, PDO::PARAM_INT);
+        $pdo1->execute();
+        $res = $pdo1->fetch();
 
-		if($pdo -> execute()){
+        $idP = $res["id_paciente"];
+        $msg = "Se ha cancelado la cita del " . $res["inicio"];
 
-			return true;
+        $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO notificaciones (id_usuario, tabla, mensaje) VALUES (:idp,'Paciente',:msg )");
+        $pdo2->bindParam(":idp", $idP, PDO::PARAM_INT);
+        $pdo2->bindParam(":msg", $msg, PDO::PARAM_STR);
+        $pdo2->execute();
 
-		}else{
-			return false;
-		}
+        $pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");
+        $pdo->bindParam(":id", $id, PDO::PARAM_INT);
+        if ($pdo->execute()) {
 
-		$pdo -> close();
-		$pdo = null;
+            return true;
 
-	}
+        } else {
+            return false;
+        }
+
+    }
 }

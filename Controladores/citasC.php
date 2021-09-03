@@ -33,7 +33,7 @@ class CitasC
 
             $tablaBD = "citas";
             $Did = substr($_GET["url"], 7);
-            $datosC = array("Did" => $_POST["Did"], "Pid" => $_POST["Pid"], "nyaC" => $_POST["nyaC"], "Cid" => $_POST["Cid"], "documentoC" => $_POST["documentoC"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"], "fyhIA" => $_POST["fyhIA"], "fyhFB" => $_POST["fyhFB"], "fyhFB" => $_POST["fyhFB"], "fechaz" => $_POST["fechaz"]);
+            $datosC = array("Did" => $_POST["Did"], "Pid" => $_POST["Pid"], "nyaC" => $_POST["nyaC"], "Cid" => $_POST["Cid"], "documentoC" => $_POST["documentoC"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"], "fyhIA" => $_POST["fyhIA"], "fyhFB" => $_POST["fyhFB"], "fyhFB" => $_POST["fyhFB"], "fechaz" => $_POST["fechaz"], "mpago" => $_POST["mpago"]);
             $resultado = CitasM::EnviarCitaM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>
@@ -54,7 +54,7 @@ class CitasC
     public function VerCitasPacienteC($id)
     {
         $tablaBD = "citas";
-        $resultado = CitasM::VerCitasPaM($tablaBD,$id);
+        $resultado = CitasM::VerCitasPaM($tablaBD, $id);
         return $resultado;
     }
 
@@ -75,7 +75,7 @@ class CitasC
 
             $Did = substr($_GET["url"], 6);
 
-            $datosC = array("Did" => $_POST["Did"], "Cid" => $_POST["Cid"], "pID" => $_POST["idPac"], "nombreP" => $_POST["nombreP"], "documentoP" => $_POST["documentoP"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"]);
+            $datosC = array("Did" => $_POST["Did"], "Cid" => $_POST["Cid"], "pID" => $_POST["idPac"], "nombreP" => $_POST["nombreP"], "documentoP" => $_POST["documentoP"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"], "mpago" => $_POST["mpago"]);
 
             $resultado = CitasM::PedirCitaDoctorM($tablaBD, $datosC);
 
