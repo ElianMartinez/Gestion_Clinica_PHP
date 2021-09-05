@@ -171,7 +171,7 @@
               <?php
 
 if ($_SESSION["foto"] == "") {
-    echo '<img src="' . $_SERVER . 'clinica/Vistas/img/defecto.png" class="user-image" alt="User Image">';
+    echo '<img src="' . $_SERVER . 'clinica/vistas/img/defecto.png" class="user-image" alt="User Image">';
 } else {
     echo '<img src=' . $_SERVER . 'clinica/' . $_SESSION["foto"] . ' class="user-image" alt="User Image">';
 }
