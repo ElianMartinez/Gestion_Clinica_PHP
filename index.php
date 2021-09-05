@@ -3,7 +3,6 @@ include "core/config.php";
 session_start();
 $_SESSION['HTTP_DIR'] = $_SERVER;
 header("Access-Control-Allow-Origin: *");
-echo "Hello";
 
 require_once dirname(__FILE__) . "Controladores/secretariasC.php";
 require_once dirname(__FILE__) . "Modelos/secretariasM.php";
