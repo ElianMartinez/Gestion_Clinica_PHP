@@ -1,15 +1,17 @@
 <?php
 
-class ConexionBD{
+class ConexionBD
+{
 
-	public function cBD(){
+    public function cBD()
+    {
 
-		$bd = new PDO("mysql:host=localhost;dbname=clinica", "root", "");
+        $bd = new PDO("mysql:host=localhost;dbname=clinica", "remto", "v123456");
 
-		$bd -> exec("set names utf8");
+        $bd->exec("set names utf8");
 
-		return $bd;
+        return $bd;
 
-	}
+    }
 
 }
