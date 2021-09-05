@@ -1,9 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 include_once "core/config.php";
-
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
