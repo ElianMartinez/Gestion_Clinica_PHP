@@ -17,24 +17,24 @@ $favicon->FaviconC();
 ?>
 
   <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/font-awesome/css/font-awesome.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/dist/css/skins/_all-skins.min.css">
 
   <!-- DataTables -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net-bs/css/responsive.bootstrap.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
   <!-- FullCalendar -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.min.css">
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/fullcalendar/dist/fullcalendar.min.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -44,13 +44,13 @@ $favicon->FaviconC();
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/Vistas/dist/css/alt/font_online.css">
+  <link rel="stylesheet" href="<?php echo $_SERVER ?>clinica/vistas/dist/css/alt/font_online.css">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini login-page">
     <!-- Site wrapper -->
     <script src="https://momentjs.com/downloads/moment.js"></script>
-    <script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/jquery/dist/jquery.min.js"></script>
   <?php
 if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
     echo '<div class="wrapper">';
@@ -121,31 +121,31 @@ if (isset($_SESSION["Ingresar"]) && $_SESSION["Ingresar"] == true) {
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- jQuery 3 -->
 <!-- Bootstrap 3.3.7 -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fastclick/lib/fastclick.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/dist/js/adminlte.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/dist/js/demo.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/dist/js/demo.js"></script>
 
 <!-- DataTables -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net/js/jquery.dataTables.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net/js/jquery.dataTables.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net-bs/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
 <!-- fullCalendar -->
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/moment/moment.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/bower_components/fullcalendar/dist/locale/es.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/moment/moment.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/bower_components/fullcalendar/dist/locale/es.js"></script>
 
-<script src="<?php echo $_SERVER ?>clinica/Vistas/js/doctores.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/js/pacientes.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/js/secretarias.js"></script>
-<script src="<?php echo $_SERVER ?>clinica/Vistas/js/registroPacienteA.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/js/doctores.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/js/pacientes.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/js/secretarias.js"></script>
+<script src="<?php echo $_SERVER ?>clinica/vistas/js/registroPacienteA.js"></script>
 
 
 <script>
