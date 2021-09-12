@@ -128,11 +128,9 @@ class PacientesC
     //Ver perfil del paciente
     public function VerPerfilPacienteC()
     {
-
         $tablaBD = "pacientes";
         $id = $_SESSION["id"];
         $resultado = PacientesM::VerPerfilPacienteM($tablaBD, $id);
-
         echo '<tr>
 
 				<td>' . $resultado["usuario"] . '</td>
@@ -141,11 +139,10 @@ class PacientesC
 				<td>' . $resultado["apellido"] . '</td>';
 
         if ($resultado["foto"] == "") {
-            echo '<td><img src="Vistas/img/defecto.png" width="40px"></td>';
+            echo '<td><img src="vistas/img/defecto.png" width="40px"></td>';
         } else {
             echo '<td><img src="' . $resultado["foto"] . '" width="40px"></td>';
         }
-
         echo '<td>' . $resultado["correo"] . '</td>
         <td>' . $resultado["documento"] . '</td>
         <td>' . $resultado["telefono"] . '</td>
@@ -210,7 +207,7 @@ class PacientesC
 
         } else {
 
-            echo '<img src="' . $_SERVER . 'clinica/Vistas/img/defecto.png" width="200px" class="img-responsive">';
+            echo '<img src="' . $_SERVER . 'clinica/vistas/img/defecto.png" width="200px" class="img-responsive">';
 
         }
 
@@ -241,7 +238,7 @@ class PacientesC
 
                 if ($_FILES["imgPerfil"]["type"] == "image/png") {
                     $nombre = mt_rand(100, 999);
-                    $rutaImg = "Vistas/img/Pacientes/Paciente" . $nombre . ".png";
+                    $rutaImg = "vistas/img/Pacientes/Paciente" . $nombre . ".png";
                     $foto = imagecreatefrompng($_FILES["imgPerfil"]["tmp_name"]);
                     imagepng($foto, $rutaImg);
                 }
@@ -250,7 +247,7 @@ class PacientesC
 
                     $nombre = mt_rand(100, 999);
 
-                    $rutaImg = "Vistas/img/Pacientes/Paciente" . $nombre . ".jpg";
+                    $rutaImg = "vistas/img/Pacientes/Paciente" . $nombre . ".jpg";
 
                     $foto = imagecreatefromjpeg($_FILES["imgPerfil"]["tmp_name"]);
 

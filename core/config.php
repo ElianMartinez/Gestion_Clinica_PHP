@@ -1,2 +1,2 @@
 <?php
-$_SERVER = "http://148.103.232.11/";
+$_SERVER = "http://localhost/";

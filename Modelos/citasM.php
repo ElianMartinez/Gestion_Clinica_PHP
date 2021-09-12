@@ -34,7 +34,6 @@ class CitasM extends ConexionBD
 
     public static function UpdateHous($datosC)
     {
-
         $pdo = ConexionBD::cBD()->prepare("UPDATE citas set inicio = :inicio, fin = :fin, tiempoa = :tiempoa, tiempob =:tiempob where id =:id");
         $pdo->bindParam(":id", $datosC["idCita"], PDO::PARAM_STR);
         $pdo->bindParam(":inicio", $datosC["fechaI"], PDO::PARAM_STR);

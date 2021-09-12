@@ -6,7 +6,7 @@ class ConexionBD
     public function cBD()
     {
 
-        $bd = new PDO("mysql:host=localhost;dbname=clinica", "remto", "v123456");
+        $bd = new PDO("mysql:host=localhost;dbname=clinica", "root", "");
 
         $bd->exec("set names utf8");
 
