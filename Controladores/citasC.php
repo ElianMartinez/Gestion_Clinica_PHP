@@ -87,15 +87,14 @@ class CitasC
 
     public function PedirCitaSecretariaC()
     {
-
         if (isset($_POST["Did"]) && isset($_POST["Cid"])) {
             $tablaBD = "citas";
             $Did = substr($_GET["url"], 15);
-            $datosC = array("Did" => $_POST["Did"], "Cid" => $_POST["Cid"], "nombreP" => $_POST["nombreP"], "documentoP" => $_POST["documentoP"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"]);
-            $resultado = CitasM::PedirCitaSecretariaM($tablaBD, $datosC);
+            $datosC = array("Did" => $_POST["Did"], "Cid" => $_POST["Cid"], "pID" => $_POST["idPac"], "nombreP" => $_POST["nombreP"], "documentoP" => $_POST["documentoP"], "fyhIC" => $_POST["fyhIC"], "fyhFC" => $_POST["fyhFC"], "mpago" => $_POST["mpago"]);
+            $resultado = CitasM::PedirCitaDoctorM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>
-				window.location = "Citasecretaria/"' . $Did . ';
+				window.location = "/clinica/Citas/"' . $_POST["Did"] . ';
 				</script>';
             }
         }

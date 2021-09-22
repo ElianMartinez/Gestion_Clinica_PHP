@@ -81,13 +81,8 @@ foreach ($resultado as $key => $value) {
 									<td>
 
 										<div class="btn-group">
-
-
 											<button class="btn btn-success EditarPaciente" Pid="' . $value["id"] . '" data-toggle="modal" data-target="#EditarPaciente"><i class="fa fa-pencil"></i> Editar</button>
-
 											<button class="btn btn-danger EliminarPaciente" Pid="' . $value["id"] . '" imgP="' . $value["foto"] . '"><i class="fa fa-times"></i> Borrar</button>
-
-
 										</div>
 
 									</td>
@@ -148,6 +143,7 @@ foreach ($resultado as $key => $value) {
 							<select
 							  class="form-control"
 							  required
+							  id="tipoDocumento"
 							  name="tipoDocumento"
 							  placeholder="Tipo de Documento"
 							>
@@ -157,11 +153,8 @@ foreach ($resultado as $key => $value) {
 						  </div>
 
 						<div class="form-group">
-
 							<h2>Documento:</h2>
-
-							<input type="text" class="form-control input-lg" name="documento" required>
-
+							<input type="text" maxlength="11" class="form-control input-lg" id="noDoc" name="documento" required>
 						</div>
 
 						<div class="form-group">
@@ -254,6 +247,7 @@ $crear->CrearPacienteC();
 							<select
 							  class="form-control"
 							  required
+							  id="tipoDocumento2"
 							  name="tipoDocumento"
 							  placeholder="Tipo de Documento"
 							>
@@ -263,7 +257,7 @@ $crear->CrearPacienteC();
 						  </div>
 						<div class="form-group">
 							<h2>Documento:</h2>
-							<input type="text" class="form-control input-lg" id="documentoE" name="documentoE" required>
+							<input type="text" maxlength="11" class="form-control input-lg" id="documentoE" name="documentoE" required>
 						</div>
 						<div class="form-group">
 							<h2>Correo:</h2>
@@ -325,3 +319,27 @@ $borrarP->BorrarPacienteC();
 
 </div>
 
+<script>
+  $("#tipoDocumento").change(e => {
+    var valor = $("#tipoDocumento").val();
+  if(valor == 1){
+   $("#noDoc").attr('minlength','11');
+   $("#noDoc").attr('maxlength','11');
+    }else{
+   $("#noDoc").attr('minlength','9');
+   $("#noDoc").attr('maxlength','9');
+    }
+  })
+
+  $("#tipoDocumento1").change(e => {
+    var valor = $("#tipoDocumento").val();
+  if(valor == 1){
+   $("#documentoE").attr('minlength','11');
+   $("#documentoE").attr('maxlength','11');
+    }else{
+   $("#documentoE").attr('minlength','9');
+   $("#documentoE").attr('maxlength','9');
+    }
+  })
+
+</script>

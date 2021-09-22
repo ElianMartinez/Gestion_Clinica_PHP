@@ -95,23 +95,28 @@ class PacientesM extends ConexionBD
     //Crear Pacientes_temp
     public static function CrearPacienteM($tablaBD, $datosC)
     {
-
-        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(apellido, nombre, documento, correo,usuario, clave, rol, telefono, direccion) VALUES (:apellido, :nombre, :documento, :correo,:usuario, :clave, :rol, :telefono, :direccion)");
-        $pdo->bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
-        $pdo->bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
-        $pdo->bindParam(":documento", $datosC["documento"], PDO::PARAM_STR);
-        $pdo->bindParam(":correo", $datosC["correo"], PDO::PARAM_STR);
-        $pdo->bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
-        $pdo->bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
-        $pdo->bindParam(":rol", $datosC["rol"], PDO::PARAM_STR);
-        $pdo->bindParam(":telefono", $datosC["telefono"], PDO::PARAM_STR);
-        $pdo->bindParam(":direccion", $datosC["direccion"], PDO::PARAM_STR);
-
-        if ($pdo->execute()) {
-            return true;
+    if (PacientesM::CheckUser($datosC["usuario"]) == false) {
+            $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD(apellido, nombre, documento, correo,usuario, clave, rol, telefono, direccion) VALUES (:apellido, :nombre, :documento, :correo,:usuario, :clave, :rol, :telefono, :direccion)");
+            $pdo->bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
+            $pdo->bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
+            $pdo->bindParam(":documento", $datosC["documento"], PDO::PARAM_STR);
+            $pdo->bindParam(":correo", $datosC["correo"], PDO::PARAM_STR);
+            $pdo->bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
+            $pdo->bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
+            $pdo->bindParam(":rol", $datosC["rol"], PDO::PARAM_STR);
+            $pdo->bindParam(":telefono", $datosC["telefono"], PDO::PARAM_STR);
+            $pdo->bindParam(":direccion", $datosC["direccion"], PDO::PARAM_STR);
+            if ($pdo->execute()) {
+                return true;
+            }else{
+                return false;
+            }
+            $pdo->close();
+            $pdo = null;
+        } else {
+            return false;
         }
-        $pdo->close();
-        $pdo = null;
+
     }
 
     public static function CheckUser($user)
@@ -119,14 +124,14 @@ class PacientesM extends ConexionBD
         $pdo = ConexionBD::cBD()->prepare("SELECT * FROM paciente_temp where usuario = :user");
         $pdo->bindParam(":user", $user, PDO::PARAM_STR);
         $pdo->execute();
-        $resultado = $pdo->fetchAll();
+        $resultado = $pdo->fetch();
         if (isset($resultado[0])) {
             return true;
         } else {
             $pdo2 = ConexionBD::cBD()->prepare("SELECT * FROM pacientes where usuario = :user");
             $pdo2->bindParam(":user", $user, PDO::PARAM_STR);
             $pdo2->execute();
-            $resultado2 = $pdo->fetch();
+            $resultado2 = $pdo2->fetch();
             if (isset($resultado2[0])) {
                 return true;
             } else {

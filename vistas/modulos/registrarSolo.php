@@ -93,6 +93,7 @@
           <select
             class="form-control"
             required
+            id="tipoDocumento"
             name="tipoDocumento"
             placeholder="Tipo de Documento"
           >
@@ -106,7 +107,9 @@
             type="text"
             class="form-control"
             required
+            id="noDoc"
             name="noDoc"
+            maxlength="11"
             placeholder="Número de Documento"
           />
         </div>
@@ -172,3 +175,18 @@
     <!-- /.login-box-body -->
   </div>
 </body>
+
+
+<script>
+  $("#tipoDocumento").change(e => {
+    var valor = $("#tipoDocumento").val();
+  if(valor == 1){
+   $("#noDoc").attr('minlength','11');
+   $("#noDoc").attr('maxlength','11');
+    }else{
+   $("#noDoc").attr('minlength','9');
+   $("#noDoc").attr('maxlength','9');
+    }
+  })
+
+</script>

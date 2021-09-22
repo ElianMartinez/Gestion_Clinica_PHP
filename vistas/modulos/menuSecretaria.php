@@ -25,13 +25,6 @@ $datos = DoctoresM::verDoCons($_SESSION["idc"]);
         </li>
 
         <li>
-          <a href="<?php echo $_SERVER; ?>clinica/consultorios">
-            <i class="fa fa-medkit"></i>
-            <span>Consultorios</span>
-          </a>
-        </li>
-
-        <li>
           <a href="<?php echo $_SERVER; ?>clinica/pacientes">
             <i class="fa fa-users"></i>
             <span>Pacientes</span>

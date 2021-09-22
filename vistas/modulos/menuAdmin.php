@@ -1,9 +1,9 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-    
+
       <ul class="sidebar-menu">
-        
+
         <li>
           <a href="<?php echo $_SERVER; ?>clinica/inicio">
             <i class="fa fa-home"></i>

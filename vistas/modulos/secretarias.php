@@ -46,7 +46,17 @@ if ($_SESSION["rol"] != "Administrador") {
 					</thead>
 					<tbody>
 						<?php
-
+function append($a)
+{
+    $datos = ConsultoriosC::VerConsulC();
+    $res = "";
+    foreach ($datos as $obj) {
+        if ($obj["id"] == $a) {
+            $res = $obj["nombre"];
+        }
+    }
+    return $res;
+}
 $resultado = SecretariasC::VerSecretariasC();
 foreach ($resultado as $key => $value) {
 
@@ -69,7 +79,7 @@ foreach ($resultado as $key => $value) {
     echo '<td>' . $value["usuario"] . '</td>
 
 									<td>' . $value["clave"] . '</td>
-									<td>' . $value["id_consultorio"] . '</td>
+									<td>' . append($value["id_consultorio"]) . '</td>
 									<td>
 
 										<div class="btn-group">

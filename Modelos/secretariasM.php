@@ -2,141 +2,152 @@
 
 require_once "ConexionBD.php";
 
-class SecretariasM extends ConexionBD{
+class SecretariasM extends ConexionBD
+{
 
+    //Ingreso Secretarias
+    public static function IngresarSecretariaM($tablaBD, $datosC)
+    {
 
-	//Ingreso Secretarias
-	static public function IngresarSecretariaM($tablaBD, $datosC){
+        $pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id, id_consultorio FROM $tablaBD WHERE usuario = :usuario");
 
-		$pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id, id_consultorio FROM $tablaBD WHERE usuario = :usuario");
+        $pdo->bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
 
-		$pdo -> bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
+        $pdo->execute();
 
-		$pdo -> execute();
+        return $pdo->fetch();
 
-		return $pdo -> fetch();
+        $pdo->close();
+        $pdo = null;
 
-		$pdo -> close();
-		$pdo = null;
+    }
 
-	}
+    //Ver perfil secretaria
+    public static function VerPerfilSecretariaM($tablaBD, $id)
+    {
 
+        $pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id FROM $tablaBD WHERE id = :id");
 
+        $pdo->bindParam(":id", $id, PDO::PARAM_INT);
 
-	//Ver perfil secretaria
-	static public function VerPerfilSecretariaM($tablaBD, $id){
+        $pdo->execute();
 
-		$pdo = ConexionBD::cBD()->prepare("SELECT usuario, clave, nombre, apellido, foto, rol, id FROM $tablaBD WHERE id = :id");
+        return $pdo->fetch();
 
-		$pdo -> bindParam(":id", $id, PDO::PARAM_INT);
+        $pdo->close();
+        $pdo = null;
 
-		$pdo -> execute();
+    }
 
-		return $pdo -> fetch();
+    //Actualizar Perfil Secretaria
+    public static function ActualizarPerfilSecretariaM($tablaBD, $datosC)
+    {
 
-		$pdo -> close();
-		$pdo = null;
+        $pdo = ConexionBD::cBD()->prepare("UPDATE $tablaBD SET usuario = :usuario, clave = :clave, nombre = :nombre, apellido = :apellido, foto = :foto WHERE id = :id");
 
-	}
+        $pdo->bindParam(":id", $datosC["id"], PDO::PARAM_INT);
+        $pdo->bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
+        $pdo->bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
+        $pdo->bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
+        $pdo->bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
+        $pdo->bindParam(":foto", $datosC["foto"], PDO::PARAM_STR);
 
+        if ($pdo->execute()) {
 
+            return true;
 
-	//Actualizar Perfil Secretaria
-	static public function ActualizarPerfilSecretariaM($tablaBD, $datosC){
+        } else {
 
-		$pdo = ConexionBD::cBD()->prepare("UPDATE $tablaBD SET usuario = :usuario, clave = :clave, nombre = :nombre, apellido = :apellido, foto = :foto WHERE id = :id");
+            return false;
 
-		$pdo -> bindParam(":id", $datosC["id"], PDO::PARAM_INT);
-		$pdo -> bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
-		$pdo -> bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
-		$pdo -> bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
-		$pdo -> bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
-		$pdo -> bindParam(":foto", $datosC["foto"], PDO::PARAM_STR);
+        }
 
-		if($pdo -> execute()){
+        $pdo->close();
+        $pdo = null;
 
-			return true;
+    }
 
-		}else{
+    public static function CheckUser($user)
+    {
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM secretarias where usuario = :user");
+        $pdo->bindParam(":user", $user, PDO::PARAM_STR);
+        $pdo->execute();
+        $resultado = $pdo->fetch();
+        if (isset($resultado[0])) {
+            return true;
+        }
 
-			return false;
+    }
 
-		}
+    //Mostrar Secretarias
+    public static function VerSecretariasM($tablaBD)
+    {
 
-		$pdo -> close();
-		$pdo = null;
+        $pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD ORDER BY apellido ASC");
 
-	}
+        $pdo->execute();
 
+        return $pdo->fetchAll();
 
+        $pdo->close();
+        $pdo = null;
 
-	//Mostrar Secretarias
-	static public function VerSecretariasM($tablaBD){
+    }
 
-		$pdo = ConexionBD::cBD()->prepare("SELECT * FROM $tablaBD ORDER BY apellido ASC");
+    //Crear Secretarias
+    public static function CrearSecretariaM($tablaBD, $datosC)
+    {
+        if (SecretariasM::CheckUser($datosC["usuario"]) == false) {
 
-		$pdo -> execute();
+            $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre, apellido, usuario, clave, rol, id_consultorio) VALUES (:nombre, :apellido, :usuario, :clave, :rol, :idc)");
 
-		return $pdo -> fetchAll();
+            $pdo->bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
+            $pdo->bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
+            $pdo->bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
+            $pdo->bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
+            $pdo->bindParam(":rol", $datosC["rol"], PDO::PARAM_STR);
+            $pdo->bindParam(":idc", $datosC["idCon"], PDO::PARAM_INT);
 
-		$pdo -> close();
-		$pdo = null;
+            if ($pdo->execute()) {
 
-	}
+                return true;
 
+            } else {
 
+                return false;
 
-	//Crear Secretarias
-	static public function CrearSecretariaM($tablaBD, $datosC){
+            }
 
-		$pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (nombre, apellido, usuario, clave, rol, id_consultorio) VALUES (:nombre, :apellido, :usuario, :clave, :rol, :idc)");
+            $pdo->close();
+            $pdo = null;
 
-		$pdo -> bindParam(":nombre", $datosC["nombre"], PDO::PARAM_STR);
-		$pdo -> bindParam(":apellido", $datosC["apellido"], PDO::PARAM_STR);
-		$pdo -> bindParam(":usuario", $datosC["usuario"], PDO::PARAM_STR);
-		$pdo -> bindParam(":clave", $datosC["clave"], PDO::PARAM_STR);
-		$pdo -> bindParam(":rol", $datosC["rol"], PDO::PARAM_STR);
-		$pdo -> bindParam(":idc", $datosC["idCon"], PDO::PARAM_INT);
+        } else {
+            return false;
+        }
 
+    }
 
-		if($pdo -> execute()){
+    //Borrar Secretarias
+    public static function BorrarSecretariaM($tablaBD, $id)
+    {
 
-			return true;
+        $pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");
 
-		}else{
+        $pdo->bindParam(":id", $id, PDO::PARAM_INT);
 
-			return false;
+        if ($pdo->execute()) {
 
-		}
+            return true;
 
-		$pdo -> close();
-		$pdo = null;
+        } else {
 
-	}
+            return false;
 
+        }
 
+        $pdo->close();
+        $pdo = null;
 
-	//Borrar Secretarias
-	static public function BorrarSecretariaM($tablaBD, $id){
-
-		$pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");
-
-		$pdo -> bindParam(":id", $id, PDO::PARAM_INT);
-
-		if($pdo -> execute()){
-
-			return true;
-
-		}else{
-
-			return false;
-
-		}
-
-		$pdo -> close();
-		$pdo = null;
-
-	}
-
+    }
 
 }
