@@ -184,7 +184,11 @@
    $("#noDoc").attr('minlength','11');
    $("#noDoc").attr('maxlength','11');
     }else{
+<<<<<<< HEAD
    $("#noDoc").attr('minlength','11');
+=======
+   $("#noDoc").attr('minlength','9');
+>>>>>>> eb2ad3d02bdff541fce71d0965bb539525d1a24e
    $("#noDoc").attr('maxlength','9');
     }
   })

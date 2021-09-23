@@ -240,10 +240,13 @@ class SecretariasC
             if ($resultado == true) {
 
                 echo '<script>
-
 				window.location = "secretarias";
 				</script>';
 
+            } else {
+                echo '<script>
+				alert("El usuario ' . $_POST["usuario"] . ' ya está registrado");
+				</script>';
             }
 
         }

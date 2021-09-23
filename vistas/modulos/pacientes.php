@@ -153,11 +153,14 @@ foreach ($resultado as $key => $value) {
 						  </div>
 
 						<div class="form-group">
-
 							<h2>Documento:</h2>
+<<<<<<< HEAD
 
 							<input type="text" maxlength="11" class="form-control input-lg" id="noDoc" name="documento" required>
 
+=======
+							<input type="text" maxlength="11" class="form-control input-lg" id="noDoc" name="documento" required>
+>>>>>>> eb2ad3d02bdff541fce71d0965bb539525d1a24e
 						</div>
 
 						<div class="form-group">
@@ -329,7 +332,11 @@ $borrarP->BorrarPacienteC();
    $("#noDoc").attr('minlength','11');
    $("#noDoc").attr('maxlength','11');
     }else{
+<<<<<<< HEAD
    $("#noDoc").attr('minlength','11');
+=======
+   $("#noDoc").attr('minlength','9');
+>>>>>>> eb2ad3d02bdff541fce71d0965bb539525d1a24e
    $("#noDoc").attr('maxlength','9');
     }
   })
@@ -340,7 +347,11 @@ $borrarP->BorrarPacienteC();
    $("#documentoE").attr('minlength','11');
    $("#documentoE").attr('maxlength','11');
     }else{
+<<<<<<< HEAD
    $("#documentoE").attr('minlength','11');
+=======
+   $("#documentoE").attr('minlength','9');
+>>>>>>> eb2ad3d02bdff541fce71d0965bb539525d1a24e
    $("#documentoE").attr('maxlength','9');
     }
   })

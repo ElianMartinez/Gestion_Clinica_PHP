@@ -128,7 +128,7 @@ class CitasM extends ConexionBD
     public static function PedirCitaSecretariaM($tablaBD, $datosC)
     {
 
-        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (id_doctor, id_consultorio, nyaP, documento, inicio, fin) VALUES (:id_doctor, :id_consultorio, :nyaP, :documento, :inicio, :fin)");
+        $pdo = ConexionBD::cBD()->prepare("INSERT INTO $tablaBD (id_doctor, id_consultorio, nyaP, documento, inicio, fin, id_paciente) VALUES (:id_doctor, :id_consultorio, :nyaP, :documento, :inicio, :fin, :idpa)");
 
         $pdo->bindParam(":id_doctor", $datosC["Did"], PDO::PARAM_INT);
         $pdo->bindParam(":id_consultorio", $datosC["Cid"], PDO::PARAM_INT);
@@ -136,6 +136,7 @@ class CitasM extends ConexionBD
         $pdo->bindParam(":documento", $datosC["documentoP"], PDO::PARAM_STR);
         $pdo->bindParam(":inicio", $datosC["fyhIC"], PDO::PARAM_STR);
         $pdo->bindParam(":fin", $datosC["fyhFC"], PDO::PARAM_STR);
+        $pdo->bindParam(":idpa", $datosC["pID"], PDO::PARAM_INT);
 
         if ($pdo->execute()) {
             return true;

@@ -124,28 +124,14 @@ $valor = null;
 $resultado = PacientesC::VerPacientesC($columna, $valor);
 
 foreach ($resultado as $key => $value) {
-
-    echo '<option dataID="' . $value["id"] . '" value="' . $value["nombre"] . ' ' . $value["apellido"] . '">' . $value["apellido"] . ' ' . $value["nombre"] . '</option>';
+    echo '<option dataDo="' . $value["documento"] . '" dataID="' . $value["id"] . '" value="' . $value["nombre"] . ' ' . $value["apellido"] . '">' . $value["apellido"] . ' ' . $value["nombre"] . '</option>';
 }
-
 ?>
-
-
-
-
-
 							</select>
-
 						</div>
-
 						<div class="form-group">
-
 							<h2>Documento:</h2>
-
-						<input type="text" class="form-control input-lg" name="documentoP"  value="">
-
-
-
+						<input type="text" class="form-control input-lg" id="doc1" name="documentoP"  value="" readonly>
 						</div>
 						<div class="form-group">
 							<h2>Método de Pago:</h2>
@@ -224,5 +210,6 @@ $enviarC->PedirCitaDoctorC();
 	}
 	$("#selectSE").change(() => {
 		$("#idPac").val($("#selectSE option:selected").attr("dataID"));
+		$("#doc1").val($("#selectSE option:selected").attr("dataDo"));
 	});
 </script>

@@ -11,19 +11,19 @@ class PacientesC
             $resultado = PacientesM::CrearPacienteM($tablaBD, $datosC);
             if ($resultado == true) {
                 echo '<script>window.location = "pacientes";</script>';
+            } else {
+                echo "<script>
+                alert('Usuario " . $_POST["usuario"] . " ya está registrado');
+                </script>";
             }
         }
-
     }
-
     //Ver Pacientes
     public static function VerPacientesC($columna, $valor)
     {
 
         $tablaBD = "pacientes";
-
         $resultado = PacientesM::VerPacientesM($tablaBD, $columna, $valor);
-
         return $resultado;
     }
 
@@ -31,23 +31,15 @@ class PacientesC
     {
         return PacientesM::VerCodeM($id, $num);
     }
-
     //Borrar Paciente
     public function BorrarPacienteC()
     {
-
         if (isset($_GET["Pid"])) {
-
             $tablaBD = "pacientes";
-
             $id = $_GET["Pid"];
-
             if ($_GET["imgP"] != "") {
-
                 unlink($_GET["imgP"]);
-
             }
-
             $resultado = PacientesM::BorrarPacienteM($tablaBD, $id);
             if ($resultado == true) {
                 echo '<script>

@@ -57,11 +57,9 @@ INSERT INTO `administradores` (`id`, `usuario`, `clave`, `nombre`, `apellido`, `
 (1, 'admin', '123', 'User', 'Admin1', 'Vistas/img/Usuarios/A-344.png', 'Administrador');
 
 -- --------------------------------------------------------
-
 --
 -- Estructura de tabla para la tabla `citas`
 --
-
 CREATE TABLE `citas` (
   `id` int(11) NOT NULL,
   `id_doctor` int(11) NOT NULL,
@@ -77,11 +75,9 @@ CREATE TABLE `citas` (
   `metodoP` varchar(100) COLLATE utf8_spanish_ci DEFAULT NULL,
   `pago` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
 --
 -- Volcado de datos para la tabla `citas`
 --
-
 INSERT INTO `citas` (`id`, `id_doctor`, `id_consultorio`, `id_paciente`, `nyaP`, `documento`, `inicio`, `fin`, `tiempoa`, `tiempob`, `fechaC`, `metodoP`, `pago`) VALUES
 (367, 21, 7, 14, 'Joel  de la cruz', '84848848', '2021-09-03 08:00:00', '2021-09-03 09:00:00', '08:00:00', '09:00:00', '2021-09-03', 's', 1),
 (370, 21, 7, 11, 'Jose  Almonte', '29324234', '2021-09-03 14:00:00', '2021-09-03 15:00:00', '14:00:00', '15:00:00', '2021-09-03', 's', 1),
