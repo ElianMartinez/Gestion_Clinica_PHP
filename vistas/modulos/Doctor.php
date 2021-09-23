@@ -180,18 +180,12 @@ if($_SESSION["rol"] != "Paciente"){
 				</div>
 
 				<div class ="modal-footer">
-					
 					<button type="submit" name="Enviar"  class="btn btn-primary">Pedir Cita</button>
-
 					<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-
 				</div>
-
 				<?php
-
 				$enviarC = new CitasC();
 				$enviarC -> EnviarCitaC();
-
 				?>
 
 				

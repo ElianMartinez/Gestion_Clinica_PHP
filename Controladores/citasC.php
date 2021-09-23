@@ -8,17 +8,15 @@ if (isset($_POST['Enviar'])) {
         $valor = substr($_GET["url"], 7);
 
         $resultado = DoctoresC::DoctorC($columna, $valor);
-
         $name = $_POST['nyaC'];
         $hora = $_POST['fyhIA'];
         $horaz = $_POST['fyhFB'];
         $fecha = $_POST['fechaz'];
         $documento = $_POST['documentoC'];
+        // $destino = "luiyicuevas123@gmail.com";
+        // $contenido = "Nombre: " . $name . "\nDocumento: " . $documento . "\nHa solicitado una cita para la fecha: " . $hora . " hasta " . $horaz . "\nFecha: " . $fecha . "\nDoctor: " . $resultado["nombre"] . " " . $resultado["apellido"];
 
-        $destino = "luiyicuevas123@gmail.com";
-        $contenido = "Nombre: " . $name . "\nDocumento: " . $documento . "\nHa solicitado una cita para la fecha: " . $hora . " hasta " . $horaz . "\nFecha: " . $fecha . "\nDoctor: " . $resultado["nombre"] . " " . $resultado["apellido"];
-
-        mail($destino, $name, $contenido);
+        // mail($destino, $name, $contenido);
 
     }
 

@@ -14,6 +14,8 @@ class historialM extends ConexionBD
         $pdo->execute();
         $res = $pdo->fetch();
 
+        $idCon = $res['id_consultorio'];
+
         $pdo22 = ConexionBD::cBD()->prepare("SELECT * FROM pacientes WHERE id = :id");
         $pdo22->bindParam(":id", $res["id_paciente"], PDO::PARAM_INT);
         $pdo22->execute();
@@ -26,14 +28,16 @@ class historialM extends ConexionBD
         $idD = $res33["id"];
         $msg = 'El paciente ' . $res22["nombre"] . ' ' . $res22["apellido"] . ' ID:' . $res["id_paciente"] . ' ha cancelado la cita del ' . $res["fechaC"] . ' : ' . $res["tiempoa"];
         $msg1 = ' Del doctor ' . $res33["nombre"] . ' ' . $res33["apellido"];
+       
         $mstotal = $msg . $msg1;
         $pdo88 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`, `tabla`) values (:idA, :messa, 0, 'Doctor')");
         $pdo88->bindParam(":idA", $idD, PDO::PARAM_INT);
         $pdo88->bindParam(":messa", $msg, PDO::PARAM_STR);
         $pdo88->execute();
 
-        $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`, `tabla`) SELECT  `id`, :messag, 0, 'Secretaria' FROM  `secretarias` ");
+        $pdo2 = ConexionBD::cBD()->prepare("INSERT INTO `notificaciones` (`id_usuario`, `mensaje`, `leido`, `tabla`) SELECT  `id`, :messag, 0, 'Secretaria' FROM  `secretarias` WHERE id_consultorio = :idcon");
         $pdo2->bindParam(":messag", $mstotal, PDO::PARAM_STR);
+        $pdo2->bindParam(":idcon", $idCon, PDO::PARAM_INT);
         $pdo2->execute();
 
         $pdo = ConexionBD::cBD()->prepare("DELETE FROM $tablaBD WHERE id = :id");

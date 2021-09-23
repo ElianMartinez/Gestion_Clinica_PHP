@@ -107,7 +107,6 @@ foreach ($resultado as $key => $value) {
 
 $borrarH = new HistorialC();
 $borrarH->BorrarHistorialC();
-
 ?>
 <script>
 
